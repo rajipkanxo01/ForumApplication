@@ -26,7 +26,6 @@ public class UserDao : IUserDao
 
         context.Users.Add(toCreateUser);
         context.SaveChanges();
-
         return Task.FromResult(toCreateUser);
     }
 

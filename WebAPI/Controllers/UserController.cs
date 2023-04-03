@@ -16,18 +16,19 @@ public class UserController : ControllerBase
         this.userLogic = userLogic;
     }
 
-    [HttpGet]
+    [HttpPost]
     public async Task<ActionResult<User>> CreateAsync(UserDto userDto)
     {
         try
         {
+            Console.WriteLine(userDto.Username);
             User user = await userLogic.CreateAsync(userDto);
             return Created($"/user/{user.UserId}", user);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return StatusCode(500, e.Message);
         }
     }
 }

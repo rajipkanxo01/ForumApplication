@@ -7,7 +7,7 @@ namespace Application.Logic;
 
 public class UserLogic : IUserLogic
 {
-    private IUserDao userDao;
+    private readonly IUserDao userDao;
 
     public UserLogic(IUserDao userDao)
     {
@@ -21,6 +21,7 @@ public class UserLogic : IUserLogic
         {
             throw new Exception("Username should be unique. Username already taken");
         }
+        
 
         ValidateUserData(userDto);
 
@@ -44,12 +45,12 @@ public class UserLogic : IUserLogic
         string userName = userDto.Username;
         string password = userDto.Password;
 
-        if (userName.Length < 3 && userName.Length > 15)
+        if (userName.Length is < 3 or > 15)
         {
             throw new Exception("Username must be between 3 and 15 characters long");
         }
 
-        if (password.Length < 7 && password.Length > 16)
+        if (password.Length is < 7 or > 16)
         {
             throw new Exception("Password must be between 7 and 16 characters long");
         }
