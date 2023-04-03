@@ -2,8 +2,11 @@
   "Users": [
     {
       "Username": "rajip12",
-      "Password": "20602059",
-      "UserId": 1
+      "Password": "20602059"
+    },
+    {
+      "Username": "roshan1",
+      "Password": "2055567"
     }
   ],
   "Forums": [],

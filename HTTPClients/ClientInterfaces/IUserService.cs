@@ -6,5 +6,6 @@ namespace HTTPClients.ClientInterfaces;
 public interface IUserService
 {
     Task<User> CreateAsync(UserDto userDto);
-    
+
+    Task<UserDto> GetUserByUsernameAsync(string username);
 }

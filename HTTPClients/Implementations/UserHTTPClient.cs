@@ -18,7 +18,7 @@ public class UserHTTPClient : IUserService
     public async Task<User> CreateAsync(UserDto userDto)
     {
         HttpResponseMessage responseMessage = await client.PostAsJsonAsync("/user", userDto);
-        
+
         string result = await responseMessage.Content.ReadAsStringAsync();
 
         if (!responseMessage.IsSuccessStatusCode)
@@ -27,6 +27,23 @@ public class UserHTTPClient : IUserService
         }
 
         User? user = JsonSerializer.Deserialize<User>(result);
+        return user;
+    }
+
+    public async Task<UserDto> GetUserByUsernameAsync(string username)
+    {
+        HttpResponseMessage responseMessage = await client.GetAsync($"/user/{username}");
+        string result = await responseMessage.Content.ReadAsStringAsync();
+
+        if (!responseMessage.IsSuccessStatusCode)
+        {
+            throw new Exception(result);
+        }
+
+        UserDto user = JsonSerializer.Deserialize<UserDto>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
         return user;
     }
 }

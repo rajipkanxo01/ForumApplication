@@ -14,30 +14,60 @@ public class UserLogic : IUserLogic
         this.userDao = userDao;
     }
 
-    public async Task<User> CreateAsync(UserDto userDto)
+    public async Task<User?> CreateAsync(UserDto userDto)
     {
-        User? existingUser = await userDao.GetByUsername(userDto.Username);
+        IEnumerable<User?> allUsers = await userDao.GetAllUsersAsync();
+        User? existingUser = allUsers.FirstOrDefault(user =>
+            user.Username.Equals(userDto.Username, StringComparison.OrdinalIgnoreCase));
         if (existingUser != null)
         {
             throw new Exception("Username should be unique. Username already taken");
         }
-        
+
 
         ValidateUserData(userDto);
 
-        User toCreate = new User()
+        User? toCreate = new User()
         {
             Username = userDto.Username,
             Password = userDto.Password
         };
 
-        User createdUser = await userDao.CreateAsync(toCreate);
+        User? createdUser = await userDao.CreateAsync(toCreate);
         return createdUser;
     }
 
-    public Task<User> GetAsync(string username)
+    // public async Task<UserDto> GetAsync(string username)
+    // {
+    //     User? user = await userDao.GetByUsername(username);
+    //     if (user != null)
+    //     {
+    //         throw new Exception("Username doesn't exist!!");
+    //     }
+    //
+    //     return new UserDto
+    //     {
+    //         Username = user.Username,
+    //         Password = user.Password
+    //     };
+    // }
+
+    public async Task<User> ValidateUser(UserDto userDto)
     {
-        throw new NotImplementedException();
+        IEnumerable<User?> allUsers = await userDao.GetAllUsersAsync();
+        User? existingUser = allUsers.FirstOrDefault(user =>
+            user.Username.Equals(userDto.Username, StringComparison.OrdinalIgnoreCase));
+        if (existingUser == null)
+        {
+            throw new Exception("User not found");
+        }
+
+        if (!existingUser.Password.Equals(userDto.Password))
+        {
+            throw new Exception("Password mismatch");
+        }
+
+        return existingUser;
     }
 
     private static void ValidateUserData(UserDto userDto)
