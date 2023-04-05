@@ -1,0 +1,11 @@
+﻿POST https://localhost:7091/user/login
+Content-Type: application/json
+
+{ "Username" : "rajip12", "Password" : "20602059" }
+
+###
+
+GET https://localhost:7091/user/authorized
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiJhNDJjZTllMy1kOTM5LTRiZjktODE0OS1hNGQxNzkwODExYmEiLCJpYXQiOiI0LzQvMjAyMyA2OjAwOjUwIFBNIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InJhamlwMTIiLCJleHAiOjE2ODA2MzQ4NTAsImlzcyI6IkpXVEF1dGhlbnRpY2F0aW9uU2VydmVyIiwiYXVkIjoiSldUU2VydmljZVNlcnZlckFwcCJ9.aS0QwS18g81WKiMB_pKBdQrk8sdP49i_yMusuT4U7dwAnrz9Hn5gHZwy4vrZajd4XLGqyDTSql7xSq_nknTAHA
+
+

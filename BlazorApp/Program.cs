@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddScoped<IUserService, UserHTTPClient>();
+builder.Services.AddScoped<IUserService, UserHttpClient>();
 // builder.Services.AddScoped<AuthenticationStateProvider, SimpleAuthenticationStateProvider>();
 // builder.Services.AddScoped<IAuthManager, AuthManagerImpl>();
 

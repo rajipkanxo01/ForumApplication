@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using Application.LogicInterfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Shared.DTOs;
@@ -23,8 +24,8 @@ public class UserController : ControllerBase
     }
 
 
-    [HttpPost]
-    public async Task<ActionResult<User>> CreateAsync(UserDto userDto)
+    [HttpPost, Route("register")]
+    public async Task<ActionResult<User>> RegisterAsync(UserDto userDto)
     {
         try
         {
@@ -39,7 +40,7 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpGet, Route("login")]
+    [HttpPost, Route("login")]
     public async Task<ActionResult> Login([FromBody] UserDto userDto)
     {
         try
@@ -53,6 +54,12 @@ public class UserController : ControllerBase
         {
             return BadRequest(e.Message);
         }
+    }
+
+    [HttpGet("authorized"), Authorize]
+    public ActionResult GetAsAuthorized()
+    {
+        return Ok("This was accepted as authorized");
     }
 
     private string GenerateJwt(User user)
@@ -88,6 +95,4 @@ public class UserController : ControllerBase
         };
         return claims;
     }
-
-
 }
