@@ -1,0 +1,36 @@
+﻿@namespace BlazorApp.Pages
+@using HTTPClients.ClientInterfaces
+@inject NavigationManager NavMgr;
+@inject IUserService UserService;
+
+<style>
+    .icon {
+        width: 30px;
+        cursor: pointer;
+    }
+</style>
+
+<AuthorizeView>
+    <Authorized>
+        <img class="icon" src="images/Logout.png" @onclick="Logout"/>
+    </Authorized>
+    <NotAuthorized>
+        <img class="icon" src="images/Login.png" @onclick="Login"/>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code {
+
+    private void Login()
+    {
+        NavMgr.NavigateTo("/Register");
+    }
+
+    private async Task Logout()
+    {
+        await UserService.LogOutAsync();
+        NavMgr.NavigateTo("/");
+    }
+
+}

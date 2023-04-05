@@ -50,7 +50,7 @@
                         <div class="text-center d-flex justify-content-between mt-4 ">
                             <p>
                                 Already a member?
-                                <a href="@ChangeToLogin" class="font-italic justify-content-between mt-4">
+                                <a href="https://localhost:7027/login" class="font-italic justify-content-between mt-4">
                                     <u>Login Here </u>
                                 </a>
                             </p>
@@ -83,7 +83,7 @@
                     Username = username,
                     Password = password
                 });
-                NavMgr.NavigateTo("/Login");
+                NavMgr.NavigateTo("/login");
             }
             catch (Exception e)
             {
@@ -97,9 +97,9 @@
         }
     }
 
-    private async Task ChangeToLogin()
-    {
-        NavMgr.NavigateTo("/Login");
-    }
+    // private async Task ChangeToLogin()
+    // {
+    //     NavMgr.NavigateTo("/login");
+    // }
 
 }

@@ -59,6 +59,7 @@ public class UserController : ControllerBase
     [HttpGet("authorized"), Authorize]
     public ActionResult GetAsAuthorized()
     {
+        Console.WriteLine("This was accepted as authorized");
         return Ok("This was accepted as authorized");
     }
 

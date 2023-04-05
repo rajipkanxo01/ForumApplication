@@ -1,4 +1,6 @@
 // using BlazorApp.Authentication;
+
+using BlazorApp.Auth;
 using HTTPClients.ClientInterfaces;
 using HTTPClients.Implementations;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -10,8 +12,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddScoped<IUserService, UserHttpClient>();
-// builder.Services.AddScoped<AuthenticationStateProvider, SimpleAuthenticationStateProvider>();
-// builder.Services.AddScoped<IAuthManager, AuthManagerImpl>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthProvider>();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7091") });
 

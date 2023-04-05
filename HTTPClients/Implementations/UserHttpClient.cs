@@ -52,6 +52,17 @@ public class UserHttpClient : IUserService
         
         OnAuthStateChanged.Invoke(principal);
     }
+    
+    public async Task GetAuthorize()
+    {
+        HttpResponseMessage responseMessage = await client.GetAsync("/user/authorized");
+        string responseContent = await responseMessage.Content.ReadAsStringAsync();
+
+        if (!responseMessage.IsSuccessStatusCode)
+        {
+            throw new Exception(responseContent);
+        }
+    }
 
     public Task LogOutAsync()
     {

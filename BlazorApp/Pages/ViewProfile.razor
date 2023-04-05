@@ -1,0 +1,18 @@
+﻿@page "/viewprofile"
+@using System.Security.Claims
+<h3>ViewProfile</h3>
+<p>Here we can see the users credentials</p>
+
+<AuthorizeView>
+    <Authorized>
+        <h3> Hello @context.User.Identity.Name</h3>
+    </Authorized>
+
+    <NotAuthorized>
+        <p>You are not logged in.</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+}

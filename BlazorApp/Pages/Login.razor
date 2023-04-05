@@ -5,37 +5,63 @@
 @inject NavigationManager NavMgr
 
 
-<AuthorizeView>
-    <NotAuthorized>
-        <div class="card">
-            <h3>Please login</h3>
-            <div class="field">
-                <label>User name:</label>
-                <input type="text" @bind="userName"/>
-            </div>
-            <div class="field">
-                <label style="text-align: center">Password:</label>
-                <input type="password" @bind="password"/>
-            </div>
-            @if (!string.IsNullOrEmpty(errorLabel))
-            {
-                <div class="field">
-                    <label style="color: red">
-                        @errorLabel
-                    </label>
+<div class="container-fluid">
+    <div class="row no-gutter">
+
+        @* image side *@
+        <div class="col-md-6 d-flex">
+            <img src="images/signup_background.png" alt=""/>
+        </div>
+
+        @* form half *@
+        <div class="col-md-6 bg-light">
+            <div class="align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class=" col-10 mx-auto">
+                            <h3 class="display-4">Sign In</h3>
+                            <p class="text-muted mb-4">Login to your account</p>
+                        </div>
+
+                        <div class=" mb-3 w-75">
+                            <input type="text" @bind="userName" placeholder="Type username" class="form-control rounded-pill border-0 shadow-sm px-4 "/>
+                        </div>
+
+                        <div class=" mb-3 w-75">
+                            <input type="text" @bind="password" placeholder="Type password" class="form-control rounded-pill border-0 shadow-sm px-4 "/>
+                        </div>
+
+
+                        <div class="mb-3 w-100 mx-5">
+                            <button type="submit" @onclick="LoginAsync" class="row btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm w-25">Log In</button>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(errorLabel))
+                        {
+                            <div class="field">
+                                <label style="color: red">
+                                    @errorLabel
+                                </label>
+                            </div>
+                        }
+
+                        <div class="text-center d-flex justify-content-between mt-4 ">
+                            <p>
+                                Want to create an account?
+                                <a href="https://localhost:7027/register" class="font-italic justify-content-between mt-4">
+                                    <u>Register Here </u>
+                                </a>
+                            </p>
+                        </div>
+
+
+                    </div>
                 </div>
-            }
-            <div class="field">
-                <button class="loginbtn" @onclick="LoginAsync">Log in</button>
             </div>
         </div>
-    </NotAuthorized>
-    <Authorized>
-        <div class="card">
-            <h3>Hello, @context.User.Identity.Name</h3>
-        </div>
-    </Authorized>
-</AuthorizeView>
+    </div>
+</div>
+
 
 @code {
     private string userName;
