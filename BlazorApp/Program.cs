@@ -13,6 +13,7 @@ builder.Services.AddServerSideBlazor();
 
 builder.Services.AddScoped<IUserService, UserHttpClient>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthProvider>();
+builder.Services.AddScoped<IForumService, ForumHttpClient>();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7091") });
 

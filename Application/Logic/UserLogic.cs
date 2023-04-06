@@ -36,22 +36,7 @@ public class UserLogic : IUserLogic
         User? createdUser = await userDao.CreateAsync(toCreate);
         return createdUser;
     }
-
-    // public async Task<UserDto> GetAsync(string username)
-    // {
-    //     User? user = await userDao.GetByUsername(username);
-    //     if (user != null)
-    //     {
-    //         throw new Exception("Username doesn't exist!!");
-    //     }
-    //
-    //     return new UserDto
-    //     {
-    //         Username = user.Username,
-    //         Password = user.Password
-    //     };
-    // }
-
+    
     public async Task<User> ValidateUser(UserDto userDto)
     {
         IEnumerable<User?> allUsers = await userDao.GetAllUsersAsync();

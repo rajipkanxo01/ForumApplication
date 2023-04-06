@@ -13,6 +13,42 @@
       "Password": "0987654321"
     }
   ],
-  "Forums": [],
+  "Forums": [
+    {
+      "ForumId": 1,
+      "CreatedBy": "rajip12",
+      "ForumName": "some forum title"
+    },
+    {
+      "ForumId": 2,
+      "CreatedBy": "rajip12",
+      "ForumName": "some forum title 2"
+    },
+    {
+      "ForumId": 3,
+      "CreatedBy": "rajip12",
+      "ForumName": "test 2"
+    },
+    {
+      "ForumId": 4,
+      "CreatedBy": "roshan1",
+      "ForumName": "data science"
+    },
+    {
+      "ForumId": 5,
+      "CreatedBy": "roshan1",
+      "ForumName": "cricket"
+    },
+    {
+      "ForumId": 6,
+      "CreatedBy": "rajip12",
+      "ForumName": "test 4"
+    },
+    {
+      "ForumId": 7,
+      "CreatedBy": "rajip12",
+      "ForumName": "vaga"
+    }
+  ],
   "Posts": []
 }

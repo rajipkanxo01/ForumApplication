@@ -3,10 +3,7 @@
 public class Forum
 {
     public int ForumId { get; set; }
+    public string CreatedBy { get; set; }
     public string ForumName { get; set; }
-
-    public Forum(string forumName)
-    {
-        ForumName = forumName;
-    }
+    // public string ForumDescription { get; set; }
 }

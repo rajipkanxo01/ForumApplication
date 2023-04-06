@@ -1,0 +1,30 @@
+﻿@namespace BlazorApp.Pages
+@inject NavigationManager NavigationManager;
+
+
+<style>
+    .create_icon {
+        width: 30px;
+        cursor: pointer;
+    }
+</style>
+
+<AuthorizeView>
+    <Authorized>
+        <img src="images/create.png" class="create_icon" @onclick="ChangeToCreateForum"/>
+    </Authorized>
+    
+    <NotAuthorized>
+        
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code {
+
+    private void ChangeToCreateForum()
+    {
+        NavigationManager.NavigateTo("/createforum");
+    }
+
+}

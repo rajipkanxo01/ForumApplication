@@ -1,0 +1,85 @@
+﻿@page "/CreateForum"
+@using HTTPClients.ClientInterfaces
+@using global::Shared.DTOs
+@using Microsoft.IdentityModel.Tokens
+@inject NavigationManager NavMgr;
+@inject IForumService ForumService;
+@inject AuthenticationStateProvider context;
+
+<AuthorizeView>
+    <Authorized>
+        <div class="create-community">
+
+            <h2>Create Community</h2>
+            <form>
+                <div class="form-group">
+                    <label for="community-name">Community Name</label>
+                    <input type="text" id="community-name" @bind="forumTitle" placeholder="Enter community name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="community-description">Description</label>
+                    <textarea   id="community-description" @bind="forumDescription" placeholder="Enter community description" required></textarea>
+                </div>
+
+                @if (!string.IsNullOrEmpty(errorLabel))
+                {
+                    <div class="field">
+                        <label style="color: white">
+                            @errorLabel
+                        </label>
+                    </div>
+                }
+
+
+                <button type="submit" @onclick="CreateAsync">Create Community</button>
+            </form>
+        </div>
+    </Authorized>
+
+</AuthorizeView>
+
+
+@code {
+    private string forumTitle;
+    private string forumDescription;
+    private string createdBy;
+    private string errorLabel;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState state = await context.GetAuthenticationStateAsync();
+        createdBy = state.User.Identity.Name;
+    }
+
+
+    private async Task CreateAsync()
+    {
+        errorLabel = "";
+
+
+        {
+            try
+            {
+                if (forumTitle.IsNullOrEmpty() || createdBy.IsNullOrEmpty())
+                {
+                    throw new Exception("Empty field Not Allowed!!");
+                }
+
+                ForumDto forumDto = new ForumDto
+                {
+                    CreatedBy = createdBy,
+                    ForumTitle = forumTitle,
+                };
+                NavMgr.NavigateTo("/");
+                await ForumService.CreateAsync(forumDto);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                errorLabel = $"Error: {e.Message}";
+            }
+        }
+    }
+
+}

@@ -25,10 +25,6 @@ public class UserDao : IUserDao
         return Task.FromResult(users);
     }
 
-    public Task<User> GetByUsername(string username)
-    {
-        User? existingUser =
-            context.Users.FirstOrDefault(user => user.Username.Equals(username, StringComparison.OrdinalIgnoreCase));
-        return Task.FromResult<User>(existingUser);
-    }
+    
+    
 }

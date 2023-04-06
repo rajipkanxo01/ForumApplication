@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using System.Text;
 using Application.LogicInterfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Shared.DTOs;
@@ -29,7 +28,6 @@ public class UserController : ControllerBase
     {
         try
         {
-            Console.WriteLine(userDto.Username);
             User? user = await userLogic.CreateAsync(userDto);
             return Created($"/user/{user.Username}", user);
         }
@@ -56,12 +54,12 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpGet("authorized"), Authorize]
-    public ActionResult GetAsAuthorized()
-    {
-        Console.WriteLine("This was accepted as authorized");
-        return Ok("This was accepted as authorized");
-    }
+    // [HttpGet("authorized"), Authorize]
+    // public ActionResult GetAsAuthorized()
+    // {
+    //     Console.WriteLine("This was accepted as authorized");
+    //     return Ok("This was accepted as authorized");
+    // }
 
     private string GenerateJwt(User user)
     {

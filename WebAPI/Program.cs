@@ -20,6 +20,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<FileContext>();
 builder.Services.AddScoped<IUserDao, UserDao>();
 builder.Services.AddScoped<IUserLogic, UserLogic>();
+builder.Services.AddScoped<IForumDao, ForumDao>();
+builder.Services.AddScoped<IForumLogic, ForumLogic>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -34,8 +36,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
-
-
 
 
 var app = builder.Build();

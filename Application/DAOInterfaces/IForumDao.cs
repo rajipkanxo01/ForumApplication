@@ -1,6 +1,11 @@
-﻿namespace Application.DAOInterfaces;
+﻿using Shared.DTOs;
+using Shared.Models;
 
-public class IForumDao
+namespace Application.DAOInterfaces;
+
+public interface IForumDao
 {
-    
+    Task<Forum?> CreateAsync(Forum toCreateForum);
+    Task<IEnumerable<Forum?>> GetAllForumsAsync();
+    Task<Forum> GetForumByIdAsync();
 }
