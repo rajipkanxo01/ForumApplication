@@ -50,7 +50,7 @@
                         <div class="text-center d-flex justify-content-between mt-4 ">
                             <p>
                                 Already a member?
-                                <a href="https://localhost:7027/login" class="font-italic justify-content-between mt-4">
+                                <a href="" @onclick="@(() => NavMgr.NavigateTo("/login"))" class="font-italic justify-content-between mt-4">
                                     <u>Login Here </u>
                                 </a>
                             </p>
@@ -96,10 +96,5 @@
             errorLabel = "Password and Repeat Password must be same!!!!";
         }
     }
-
-    // private async Task ChangeToLogin()
-    // {
-    //     NavMgr.NavigateTo("/login");
-    // }
 
 }

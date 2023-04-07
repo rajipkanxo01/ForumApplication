@@ -1,0 +1,84 @@
+﻿@page "/NavigateToForum/{id:int}"
+@using global::Shared.Models
+@using HTTPClients.ClientInterfaces
+@inject IForumService ForumService;
+@inject IPostService PostService;
+@inject NavigationManager NavigationManager;
+@inject AuthenticationStateProvider Context;
+
+
+<section class="title container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>@forumTitle</h1>
+        </div>
+        @if (IsAuthorized)
+        {
+            <div class="col-md-4">
+                <btn class="create_button" @onclick="@(() => NavigationManager.NavigateTo($"/{Id}/CreatePost"))">Create Post</btn>
+            </div>
+        }
+
+    </div>
+</section>
+
+@foreach (Post post in posts!)
+{
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <article class="post_card">
+                    <div class="post_card_info">
+                        <p class="post_title">@post.Title</p>
+                        <p>
+                            <span class="icon-link mr-3">
+                                <span class="oi oi-people" aria-hidden="true"></span>
+                                @post.CreatedBy
+                            </span>
+                            <span class="icon-link"> <span class="oi oi-comment-square" aria-hidden="true"></span> 150</span>
+                        </p>
+                        <p>
+                            @post.Body
+                        </p>
+                        <a href="#" class="btn ">View Comments</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private string? errorLabel = "";
+    private string? forumTitle;
+    private IEnumerable<Post>? posts = new List<Post>();
+    private bool IsAuthorized { get; set; } = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorLabel = "";
+
+        try
+        {
+            AuthenticationState state = await Context.GetAuthenticationStateAsync();
+            if (state.User.Identity != null) IsAuthorized = state.User.Identity.IsAuthenticated;
+
+            Forum forumById = await ForumService.GetForumById(Id);
+            forumTitle = forumById.ForumName;
+
+            posts = await PostService.GetPostsByForumId(Id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            errorLabel = $"Error: {e.Message}";
+        }
+    }
+
+
+}

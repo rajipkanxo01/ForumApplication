@@ -1,6 +1,7 @@
 ﻿@page "/CreateForum"
 @using HTTPClients.ClientInterfaces
 @using global::Shared.DTOs
+@using global::Shared.Models
 @using Microsoft.IdentityModel.Tokens
 @inject NavigationManager NavMgr;
 @inject IForumService ForumService;
@@ -32,7 +33,7 @@
                 }
 
 
-                <button type="submit" @onclick="CreateAsync">Create Community</button>
+                <button @onclick="CreateAsync" type="submit">Create Community</button>
             </form>
         </div>
     </Authorized>
@@ -65,15 +66,14 @@
                 {
                     throw new Exception("Empty field Not Allowed!!");
                 }
-
-                ForumDto forumDto = new ForumDto
+                await ForumService.CreateAsync(new ForumDto
                 {
                     CreatedBy = createdBy,
                     ForumTitle = forumTitle,
                     ForumDescription = forumDescription
-                };
+                });
                 NavMgr.NavigateTo("/ViewForum");
-                await ForumService.CreateAsync(forumDto);
+                
             }
             catch (Exception e)
             {

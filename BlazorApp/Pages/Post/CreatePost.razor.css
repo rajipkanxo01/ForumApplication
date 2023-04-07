@@ -1,0 +1,81 @@
+﻿.post-form {
+    background: linear-gradient(to bottom, #131e5e, #080c23);
+    border: 1px solid #EDEFF1;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    padding: 16px;
+}
+
+.post-form .header {
+    border-bottom: 1px solid #EDEFF1;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+}
+
+.post-form .header h1 {
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.post-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-form label {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.post-form .form-group {
+    margin-bottom: 16px;
+}
+
+.post-form input[type="text"],
+.post-form textarea {
+    background-color: #F6F7F8;
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #1A1A1B;
+    font-size: 16px;
+    padding: 8px;
+    width: 100%;
+}
+
+.post-form textarea {
+    height: 120px;
+}
+
+.post-form input[type="text"]:disabled {
+    background-color: #F6F7F8;
+    color: #B3B3B3;
+    cursor: not-allowed;
+}
+
+.post-form button[type="submit"] {
+    background-color: #FF5700;
+    border: none;
+    border-radius: 4px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 16px;
+    padding: 12px 16px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.post-form button[type="submit"]:hover {
+    background-color: #E14D00;
+}
+
+.post-form {
+    max-width: 600px;
+    margin: 0 auto;
+}

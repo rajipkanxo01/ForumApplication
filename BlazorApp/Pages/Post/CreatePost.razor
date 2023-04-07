@@ -1,6 +1,81 @@
-﻿@page "/CreatePost"
-<h3>CreatePost</h3>
+﻿@page "/{belongsToForumId:int}/CreatePost"
+@using HTTPClients.ClientInterfaces
+@using global::Shared.Models
+@using Microsoft.IdentityModel.Tokens
+@using global::Shared.DTOs
+@inject AuthenticationStateProvider Context;
+@inject IForumService ForumService;
+@inject IPostService PostService;
+@inject NavigationManager Manager;
+
+
+<div class="post-form">
+    <div class="header">
+        <h1>Create a Post</h1>
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" @bind="PostTitle" placeholder="Enter your post title" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" @bind="PostDescription" placeholder="Enter your post description" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="community">Community</label>
+            <input type="text" placeholder="Forum Name" value="@ForumName" disabled>
+        </div>
+        <button type="submit" @onclick="CreateAsync">Post</button>
+    </form>
+</div>
+
 
 @code {
-    
+    public string? PostTitle { get; set; }
+    public string? PostDescription { get; set; }
+    public string? PostCreatedBy { get; set; }
+    public string? ForumName { get; set; }
+    public string? ErrorLabel { get; set; }
+
+    [Parameter]
+    public int BelongsToForumId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState state = await Context.GetAuthenticationStateAsync();
+        PostCreatedBy = state.User.Identity!.Name;
+
+        Forum forumById = await ForumService.GetForumById(BelongsToForumId);
+        ForumName = forumById.ForumName;
+    }
+
+    public async Task CreateAsync()
+    {
+        ErrorLabel = "";
+
+        try
+        {
+            if (PostTitle.IsNullOrEmpty() || PostDescription.IsNullOrEmpty() || ForumName.IsNullOrEmpty() || PostCreatedBy.IsNullOrEmpty())
+            {
+                throw new Exception("Fields are empty!!!");
+            }
+
+            PostDto postDto = new PostDto
+            {
+                Title = PostTitle,
+                BelongsToId = BelongsToForumId,
+                CreatedBy = PostCreatedBy,
+                Body = PostDescription
+            };
+            await PostService.CreateAsync(postDto);
+            Manager.NavigateTo($"/NavigateToForum/{BelongsToForumId}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            ErrorLabel = $"Error: {e.Message}";
+        }
+    }
+
 }

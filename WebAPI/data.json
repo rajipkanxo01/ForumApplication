@@ -3,6 +3,10 @@
     {
       "Username": "rajipkanxo01",
       "Password": "20602059"
+    },
+    {
+      "Username": "vikcy2005",
+      "Password": "iamVicky"
     }
   ],
   "Forums": [
@@ -29,7 +33,79 @@
       "CreatedBy": "rajipkanxo01",
       "ForumName": "Retro Gaming",
       "ForumDescription": "For those who love classic games and consoles, this sub forum is for you. Discuss your favorite retro games, consoles, and accessories, and connect with fellow gamers who share your passion for nostalgia."
+    },
+    {
+      "ForumId": 5,
+      "CreatedBy": "vikcy2005",
+      "ForumName": "Jekyll",
+      "ForumDescription": "This community is for jekyll."
+    },
+    {
+      "ForumId": 6,
+      "CreatedBy": "rajipkanxo01",
+      "ForumName": "Bootstrap",
+      "ForumDescription": "For bootstrap lovers"
+    },
+    {
+      "ForumId": 7,
+      "CreatedBy": "rajipkanxo01",
+      "ForumName": "Latex",
+      "ForumDescription": "Latex is soo fun."
+    },
+    {
+      "ForumId": 8,
+      "CreatedBy": "rajipkanxo01",
+      "ForumName": "Overleaf",
+      "ForumDescription": "Use overleaf for latex"
+    },
+    {
+      "ForumId": 9,
+      "CreatedBy": "rajipkanxo01",
+      "ForumName": "VoiceKidsNepal",
+      "ForumDescription": "VoiceKidsNepal is reality show from Nepal."
+    },
+    {
+      "ForumId": 10,
+      "CreatedBy": "rajipkanxo01",
+      "ForumName": "Keyboard",
+      "ForumDescription": "For all keyboard lovers"
     }
   ],
-  "Posts": []
+  "Posts": [
+    {
+      "Title": "Emerging AI Technologies",
+      "Body": "some description about ai technologies",
+      "CreatedBy": "vikcy2005",
+      "BelongsToId": 1,
+      "PostId": 1
+    },
+    {
+      "Title": "The Impact of 5G on Technology and Society",
+      "Body": "As 5G networks become more widespread, how will they transform the way we communicate, work, and live? Join this discussion to explore the possibilities of 5G technology and its implications for society.",
+      "CreatedBy": "rajipkanxo01",
+      "BelongsToId": 1,
+      "PostId": 2
+    },
+    {
+      "Title": "The Rise of the Internet of Things",
+      "Body": "The Internet of Things (IoT) refers to the growing network of connected devices, from smart thermostats to fitness trackers. In this post, let\u0027s discuss the potential benefits and risks of IoT and how it may impact our daily lives.",
+      "CreatedBy": "rajipkanxo01",
+      "BelongsToId": 1,
+      "PostId": 3
+    },
+    {
+      "Title": "The Evolution of Gaming Technology",
+      "Body": "Gaming technology has come a long way since the days of 8-bit graphics and cartridge-based consoles. In this post, let\u0027s explore the evolution of gaming technology, from the first video games to the latest virtual reality systems, and discuss the impact these advancements have had on the gaming industry.",
+      "CreatedBy": "rajipkanxo01",
+      "BelongsToId": 4,
+      "PostId": 4
+    },
+    {
+      "Title": "Retro Game Collecting: Tips and Tricks",
+      "Body": "For some, retro gaming isn\u0027t just about playing the games, it\u0027s about collecting them too. In this post, let\u0027s discuss tips and tricks for building a retro game collection, from finding hidden gems to maintaining and organizing your games.",
+      "CreatedBy": "rajipkanxo01",
+      "BelongsToId": 4,
+      "PostId": 5
+    }
+  ]
 }

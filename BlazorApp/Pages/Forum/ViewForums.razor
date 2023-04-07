@@ -21,7 +21,7 @@ else
             <div class="forum">
                 <div class="forum_preview">
                     <h2>@forum.ForumName</h2>
-                    <a href="" @onclick="@(() => Manager.NavigateTo($"/ViewForum/{forum.ForumId}"))"> View All Posts <span class="oi:chevron-right"></span> </a>
+                    <a href="" @onclick="@(() => Manager.NavigateTo($"/NavigateToForum/{forum.ForumId}"))"> View All Posts <span class="oi:chevron-right"></span> </a>
                 </div>
 
                 <div class="forum_info">

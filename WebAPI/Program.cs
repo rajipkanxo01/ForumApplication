@@ -22,6 +22,8 @@ builder.Services.AddScoped<IUserDao, UserDao>();
 builder.Services.AddScoped<IUserLogic, UserLogic>();
 builder.Services.AddScoped<IForumDao, ForumDao>();
 builder.Services.AddScoped<IForumLogic, ForumLogic>();
+builder.Services.AddScoped<IPostDao, PostDao>();
+builder.Services.AddScoped<IPostLogic, PostLogic>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
