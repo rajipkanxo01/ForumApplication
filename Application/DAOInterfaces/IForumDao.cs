@@ -7,5 +7,5 @@ public interface IForumDao
 {
     Task<Forum?> CreateAsync(Forum toCreateForum);
     Task<IEnumerable<Forum?>> GetAllForumsAsync();
-    Task<Forum> GetForumByIdAsync();
+    Task<Forum?> GetForumByIdAsync(int id);
 }

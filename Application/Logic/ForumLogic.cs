@@ -20,23 +20,20 @@ public class ForumLogic : IForumLogic
         Forum? forum = new Forum
         {
             CreatedBy = forumDto.CreatedBy,
-            ForumName = forumDto.ForumTitle
+            ForumName = forumDto.ForumTitle,
+            ForumDescription = forumDto.ForumDescription
         };
-        ValidateForum(forum);
         Forum? createdForum = await forumDao.CreateAsync(forum);
         return createdForum;
     }
 
-    private void ValidateForum(Forum forum)
+    public Task<IEnumerable<Forum?>> GetAsync()
     {
-        if (string.IsNullOrEmpty(forum.ForumName))
-        {
-            throw new Exception("Forum Name cannot be empty!!");
-        }
+        return forumDao.GetAllForumsAsync();
+    }
 
-        if (string.IsNullOrEmpty(forum.CreatedBy))
-        {
-            throw new Exception("Created By Username is null!!");
-        }
+    public Task<Forum?> GetForumByIdAsync(int id)
+    {
+        return forumDao.GetForumByIdAsync(id);
     }
 }

@@ -1,53 +1,34 @@
 {
   "Users": [
     {
-      "Username": "rajip12",
+      "Username": "rajipkanxo01",
       "Password": "20602059"
-    },
-    {
-      "Username": "roshan1",
-      "Password": "2055567"
-    },
-    {
-      "Username": "pdlbipin1",
-      "Password": "0987654321"
     }
   ],
   "Forums": [
     {
       "ForumId": 1,
-      "CreatedBy": "rajip12",
-      "ForumName": "some forum title"
+      "CreatedBy": "rajipkanxo01",
+      "ForumName": "Tech Talk",
+      "ForumDescription": "For tech enthusiasts and professionals, this is the place to discuss the latest tech trends, gadgets, and innovations. From programming to cybersecurity, gaming to AI, join the conversation about all things tech-related."
     },
     {
       "ForumId": 2,
-      "CreatedBy": "rajip12",
-      "ForumName": "some forum title 2"
+      "CreatedBy": "rajipkanxo01",
+      "ForumName": "Travel Tales",
+      "ForumDescription": "Share your travel experiences and recommendations with fellow globetrotters in this sub forum. Whether you\u0027re a backpacker, luxury traveler, or anything in between, connect with others who share your love of exploring new places and cultures."
     },
     {
       "ForumId": 3,
-      "CreatedBy": "rajip12",
-      "ForumName": "test 2"
+      "CreatedBy": "rajipkanxo01",
+      "ForumName": "Gaming News",
+      "ForumDescription": "Stay up-to-date with the latest gaming news and industry updates in this sub forum. From console releases to game announcements, share your thoughts and insights on what\u0027s happening in the gaming world."
     },
     {
       "ForumId": 4,
-      "CreatedBy": "roshan1",
-      "ForumName": "data science"
-    },
-    {
-      "ForumId": 5,
-      "CreatedBy": "roshan1",
-      "ForumName": "cricket"
-    },
-    {
-      "ForumId": 6,
-      "CreatedBy": "rajip12",
-      "ForumName": "test 4"
-    },
-    {
-      "ForumId": 7,
-      "CreatedBy": "rajip12",
-      "ForumName": "vaga"
+      "CreatedBy": "rajipkanxo01",
+      "ForumName": "Retro Gaming",
+      "ForumDescription": "For those who love classic games and consoles, this sub forum is for you. Discuss your favorite retro games, consoles, and accessories, and connect with fellow gamers who share your passion for nostalgia."
     }
   ],
   "Posts": []

@@ -34,4 +34,38 @@ public class ForumHttpClient : IForumService
         Forum? forum = JsonSerializer.Deserialize<Forum>(result);
         return forum;
     }
+
+    public async Task<ICollection<Forum>> GetAsync()
+    {
+        HttpResponseMessage responseMessage = await client.GetAsync("/Forum");
+        string result = await responseMessage.Content.ReadAsStringAsync();
+
+        if (!responseMessage.IsSuccessStatusCode)
+        {
+            throw new Exception(result);
+        }
+
+        ICollection<Forum> forum = JsonSerializer.Deserialize<ICollection<Forum>>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return forum;
+    }
+
+    public async Task<Forum> GetForumById(int id)
+    {
+        HttpResponseMessage responseMessage = await client.GetAsync($"/Forum/{id}");
+        string result = await responseMessage.Content.ReadAsStringAsync();
+
+        if (!responseMessage.IsSuccessStatusCode)
+        {
+            throw new Exception(result);
+        }
+
+        Forum forum = JsonSerializer.Deserialize<Forum>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return forum;
+    }
 }

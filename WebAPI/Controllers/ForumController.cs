@@ -31,4 +31,34 @@ public class ForumController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Forum>>> GetAsync()
+    {
+        try
+        {
+            IEnumerable<Forum?> forums = await forumLogic.GetAsync();
+            return Ok(forums);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<Forum>> GetForumByIdAsync([FromRoute] int id)
+    {
+        try
+        {
+            Forum? forum = await forumLogic.GetForumByIdAsync(id);
+            return Ok(forum);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
 }

@@ -1,0 +1,65 @@
+﻿@page "/ViewForum"
+@using global::Shared.Models
+@using HTTPClients.ClientInterfaces
+@inject IForumService ForumService;
+@inject NavigationManager Manager;
+
+
+@if (forums == null)
+{
+    <span>Loading.......</span>
+}
+else if (!forums.Any())
+{
+    <span>No forums found.....</span>
+}
+else
+{
+    <div class="forum_container">
+        @foreach (Forum forum in forums)
+        {
+            <div class="forum">
+                <div class="forum_preview">
+                    <h2>@forum.ForumName</h2>
+                    <a href="" @onclick="@(() => Manager.NavigateTo($"/ViewForum/{forum.ForumId}"))"> View All Posts <span class="oi:chevron-right"></span> </a>
+                </div>
+
+                <div class="forum_info">
+                    <h6>@forum.CreatedBy</h6>
+                    <p>@forum.ForumDescription</p>
+                    @* <button class="btn">Continue</button> *@
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (!string.IsNullOrEmpty(errorLabel))
+    {
+        <div class="field">
+            <label style="color: red">
+                @errorLabel
+            </label>
+        </div>
+    }
+}
+
+@code {
+    private IEnumerable<Forum?> forums;
+    private string errorLabel = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorLabel = "";
+        try
+        {
+            forums = await ForumService.GetAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            errorLabel = e.Message;
+        }
+    }
+
+
+}

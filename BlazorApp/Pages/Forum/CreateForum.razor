@@ -61,7 +61,7 @@
         {
             try
             {
-                if (forumTitle.IsNullOrEmpty() || createdBy.IsNullOrEmpty())
+                if (forumTitle.IsNullOrEmpty() || createdBy.IsNullOrEmpty() || forumDescription.IsNullOrEmpty())
                 {
                     throw new Exception("Empty field Not Allowed!!");
                 }
@@ -70,8 +70,9 @@
                 {
                     CreatedBy = createdBy,
                     ForumTitle = forumTitle,
+                    ForumDescription = forumDescription
                 };
-                NavMgr.NavigateTo("/");
+                NavMgr.NavigateTo("/ViewForum");
                 await ForumService.CreateAsync(forumDto);
             }
             catch (Exception e)

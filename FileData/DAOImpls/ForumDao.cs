@@ -35,8 +35,9 @@ public class ForumDao : IForumDao
         return Task.FromResult(allForums)!;
     }
 
-    public Task<Forum> GetForumByIdAsync()
+    public Task<Forum?> GetForumByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        Forum? existingForum = context.Forums.FirstOrDefault(forum => forum.ForumId == id);
+        return Task.FromResult(existingForum);
     }
 }

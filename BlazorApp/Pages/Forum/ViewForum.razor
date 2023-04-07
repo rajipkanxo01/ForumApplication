@@ -1,6 +1,44 @@
-﻿@page "/ViewForum"
-<h3>ViewForum</h3>
+﻿@page "/ViewForum/{id:int}"
+@using global::Shared.Models
+@using HTTPClients.ClientInterfaces
+@inject IForumService ForumService;
+@inject NavigationManager NavigationManager;
+
+
+<section class="title container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>@forumTitle</h1>
+        </div>
+        <div class="col-md-4">
+            <btn class="create_button" @onclick="@(() => NavigationManager.NavigateTo($"/CreatePost"))">Create Post</btn>
+        </div>
+    </div>
+</section>
 
 @code {
-    
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private string errorLabel = "";
+    private string forumTitle;
+    private IEnumerable<Post>? posts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        errorLabel = "";
+
+        try
+        {
+            Forum forumById = await ForumService.GetForumById(Id);
+            forumTitle = forumById.ForumName;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            errorLabel = $"Error: {e.Message}";
+        }
+    }
+
 }
