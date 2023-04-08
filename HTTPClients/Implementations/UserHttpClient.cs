@@ -53,16 +53,6 @@ public class UserHttpClient : IUserService
         OnAuthStateChanged.Invoke(principal);
     }
     
-    public async Task GetAuthorize()
-    {
-        HttpResponseMessage responseMessage = await client.GetAsync("/user/authorized");
-        string responseContent = await responseMessage.Content.ReadAsStringAsync();
-
-        if (!responseMessage.IsSuccessStatusCode)
-        {
-            throw new Exception(responseContent);
-        }
-    }
 
     public Task LogOutAsync()
     {
@@ -99,6 +89,12 @@ public class UserHttpClient : IUserService
         }
 
         return Convert.FromBase64String(base64);
+    }
+
+    public static  async Task<string?> GetJwtToken()
+    {
+        
+        return await Task.FromResult(Jwt);
     }
 
     private static ClaimsPrincipal CreateClaimsPrincipal()

@@ -24,7 +24,8 @@ public class PostDao : IPostDao
         }
 
         post.PostId = postId;
-        
+        post.CreatedOn = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm");
+
         fileContext.Posts.Add(post);
         fileContext.SaveChanges();
         return Task.FromResult(post);

@@ -2,7 +2,6 @@
 using System.Net.Http.Json;
 using System.Text.Json;
 using HTTPClients.ClientInterfaces;
-using Microsoft.AspNetCore.Components.Authorization;
 using Shared.DTOs;
 using Shared.Models;
 
@@ -11,18 +10,18 @@ namespace HTTPClients.Implementations;
 
 public class ForumHttpClient : IForumService
 {
+    public string? Jwt { get; set; }
     private readonly HttpClient client;
-    public string? Jwt { get; set; } = UserHttpClient.Jwt;
-
 
     public ForumHttpClient(HttpClient client)
     {
         this.client = client;
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Jwt);
     }
+    
 
-    public async Task<Forum> CreateAsync(ForumDto dto)
+    public async Task<Forum?> CreateAsync(ForumDto dto)
     {
+        LoadClientWithToken();
         HttpResponseMessage responseMessage = await client.PostAsJsonAsync("/forum/create", dto);
         string result = await responseMessage.Content.ReadAsStringAsync();
 
@@ -31,7 +30,10 @@ public class ForumHttpClient : IForumService
             throw new Exception(result);
         }
 
-        Forum? forum = JsonSerializer.Deserialize<Forum>(result);
+        Forum? forum = JsonSerializer.Deserialize<Forum>(result,new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
         return forum;
     }
 
@@ -67,5 +69,11 @@ public class ForumHttpClient : IForumService
             PropertyNameCaseInsensitive = true
         })!;
         return forum;
+    }
+    
+    private async void LoadClientWithToken()
+    {
+        Jwt = await UserHttpClient.GetJwtToken();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Jwt);
     }
 }

@@ -7,6 +7,5 @@ public class Post
     public string? CreatedBy { get; set; }
     public int BelongsToId { get; set; }
     public int PostId { get; set; }
-
-   
+    public string? CreatedOn { get; set; }
 }

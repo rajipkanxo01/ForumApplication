@@ -44,13 +44,13 @@
 @code {
     private string forumTitle;
     private string forumDescription;
-    private string createdBy;
+    private string? createdBy;
     private string errorLabel;
 
     protected override async Task OnInitializedAsync()
     {
         AuthenticationState state = await context.GetAuthenticationStateAsync();
-        createdBy = state.User.Identity.Name;
+        createdBy = state.User.Identity!.Name;
     }
 
 
@@ -66,14 +66,16 @@
                 {
                     throw new Exception("Empty field Not Allowed!!");
                 }
-                await ForumService.CreateAsync(new ForumDto
+                Task<Forum> async = Task.FromResult(await ForumService.CreateAsync(new ForumDto
                 {
                     CreatedBy = createdBy,
                     ForumTitle = forumTitle,
                     ForumDescription = forumDescription
-                });
-                NavMgr.NavigateTo("/ViewForum");
-                
+                }))!;
+                if (async.IsCompleted)
+                {
+                    NavMgr.NavigateTo("https://localhost:7027");
+                }
             }
             catch (Exception e)
             {
@@ -82,5 +84,7 @@
             }
         }
     }
+
+
 
 }
