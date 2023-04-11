@@ -34,15 +34,17 @@ public class PostHttpClient : IPostService
         return post;
     }
 
-    public async Task<Post?> GetPostByIdAsync(int? postId)
+    public async Task<Post?> GetPostByIdAsync(int forumId, int postId)
     {
-        HttpResponseMessage responseMessage = await client.GetAsync($"/Post/viewpost/{postId}");
+        string url = $"?forumId={forumId}&postId={postId}";
+
+        HttpResponseMessage responseMessage = await client.GetAsync($"/Post/viewpost" + url);
         string result = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
         ;
 
         if (!responseMessage.IsSuccessStatusCode)
         {
-            throw new Exception(result); 
+            throw new Exception(result);
         }
 
         Post? post = JsonSerializer.Deserialize<Post>(result, new JsonSerializerOptions
@@ -69,7 +71,7 @@ public class PostHttpClient : IPostService
         })!;
         return allPosts;
     }
-    
+
     private async void LoadClientWithToken()
     {
         Jwt = await UserHttpClient.GetJwtToken();

@@ -54,7 +54,7 @@ else
                         <p>
                             @post.Body
                         </p>
-                        <a href="#" class="btn" @onclick="@(() => NavigationManager.NavigateTo($"/NavigateToPost/{post.PostId}"))">View Comments</a>
+                        <a href="#" class="btn" @onclick="@(() => NavigationManager.NavigateTo($"/NavigateToPost/{Id}/{post.PostId}"))">View Comments</a>
                         @* <a href="#" class="btn" ))> View Comments</a> *@
 
                     </div>

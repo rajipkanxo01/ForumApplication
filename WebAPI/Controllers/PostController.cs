@@ -47,12 +47,12 @@ public class PostController : ControllerBase
         }
     }
 
-    [HttpGet("viewpost/{postId:int}")]
-    public async Task<ActionResult<Post>> GetPostById([FromRoute] int postId)
+    [HttpGet("viewpost/")]
+    public async Task<ActionResult<Post>> GetPostById([FromQuery] int forumId, [FromQuery] int postId)
     {
         try
         {
-            Post? post = await postLogic.GetPostByIdAsync(postId);
+            Post? post = await postLogic.GetPostByIdAsync(forumId,postId);
             return Ok(post);
         }
         catch (Exception e)

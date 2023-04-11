@@ -44,17 +44,13 @@ public class PostDao : IPostDao
         return Task.FromResult(forumPosts);
     }
 
-    public Task<Post?> GetPostByIdAsync(int postId)
+    public Task<Post?> GetPostByIdAsync(int forumId, int postId)
     {
-        ICollection<Forum>? forums = fileContext.Forums;
+        Forum? forum = fileContext.Forums!.FirstOrDefault(forum => forum.ForumId == forumId)!;
 
-        foreach (Forum forum in forums)
-        {
-            Post? post = forum.Posts!.FirstOrDefault(post => post.PostId == postId);
-            return Task.FromResult(post);
-        }
+        Post post = forum.Posts!.FirstOrDefault(p => p.PostId == postId)!;
 
-        return (Task<Post?>)Task.FromException(new Exception($"No Post found with Id {postId}"));
+        return Task.FromResult(post)!;
     }
 
     // public Task<IEnumerable<Post>> GetAllPostsAsync()

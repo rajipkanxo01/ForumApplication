@@ -28,9 +28,9 @@ public class PostLogic : IPostLogic
         return post;
     }
 
-    public async Task<Post?> GetPostByIdAsync(int postId)
+    public async Task<Post?> GetPostByIdAsync(int forumId, int postId)
     {
-        Post? post = await postDao.GetPostByIdAsync(postId);
+        Post? post = await postDao.GetPostByIdAsync(forumId,postId);
         return post;
     }
 

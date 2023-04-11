@@ -15,6 +15,14 @@
     {
       "Username": "pramessth1",
       "Password": "qwert1234"
+    },
+    {
+      "Username": "test123",
+      "Password": "1234567"
+    },
+    {
+      "Username": "abc1",
+      "Password": "1234567"
     }
   ],
   "Forums": [
@@ -40,7 +48,7 @@
         },
         {
           "Title": "The Role of Cybersecurity in a Digital World",
-          "Body": "\"With more and more of our lives taking place online, cybersecurity has become an increasingly important issue. In this post, discuss the role of cybersecurity in a digital world, from protecting personal information to safeguarding critical infrastructure. Share your thoughts on the latest trends and developments in cybersecurity and offer advice for staying safe online.\"",
+          "Body": "\u0022With more and more of our lives taking place online, cybersecurity has become an increasingly important issue. In this post, discuss the role of cybersecurity in a digital world, from protecting personal information to safeguarding critical infrastructure. Share your thoughts on the latest trends and developments in cybersecurity and offer advice for staying safe online.\u0022",
           "CreatedBy": "rajipkanxo01",
           "PostId": 3,
           "CreatedOn": "Tuesday , Apr 11 2023,10:56"
@@ -54,7 +62,7 @@
         },
         {
           "Title": "The Ethics of AI: Balancing Innovation and Responsibility",
-          "Body": "As AI continues to advance at a rapid pace, it's important to consider the ethical implications of this technology. In this post, discuss the ethical considerations surrounding AI, from bias and privacy concerns to the potential impact on employment and society as a whole. Share your thoughts on how we can balance innovation with responsibility and ensure that AI is used for the greater good.",
+          "Body": "As AI continues to advance at a rapid pace, it\u0027s important to consider the ethical implications of this technology. In this post, discuss the ethical considerations surrounding AI, from bias and privacy concerns to the potential impact on employment and society as a whole. Share your thoughts on how we can balance innovation with responsibility and ensure that AI is used for the greater good.",
           "CreatedBy": "panduPanda",
           "PostId": 5,
           "CreatedOn": "Tuesday , Apr 11 2023,10:56"
@@ -83,7 +91,7 @@
         },
         {
           "Title": "Debating the Best Movie Endings of All Time",
-          "Body": "A great movie ending can leave a lasting impression, whether it\\u0027s a twist, a catharsis, or a sense of closure. In this post, share your thoughts on the best movie endings of all time, and engage in friendly debate with other members of the community. Discuss what makes an ending great, and discover new movies to add to your must-watch list.\"",
+          "Body": "A great movie ending can leave a lasting impression, whether it\\u0027s a twist, a catharsis, or a sense of closure. In this post, share your thoughts on the best movie endings of all time, and engage in friendly debate with other members of the community. Discuss what makes an ending great, and discover new movies to add to your must-watch list.\u0022",
           "CreatedBy": "rajipkanxo01",
           "PostId": 2,
           "CreatedOn": "Tuesday , Apr 11 2023,10:55"
@@ -110,6 +118,36 @@
       "ForumName": "Furry Friends and Feathery Companions",
       "ForumDescription": "This forum is dedicated to all things pets. Share your stories and photos of your favorite furry, feathery, or scaly friends, discuss pet care and training tips, and get advice from other pet lovers.",
       "Posts": []
+    },
+    {
+      "ForumId": 7,
+      "CreatedBy": "test123",
+      "ForumName": "The Art of Composition: Tips for Creating Stunning Photos",
+      "ForumDescription": "Composition is a fundamental aspect of photography, and it can be a powerful tool for creating stunning images. In this post, share your tips and tricks for composing great shots, from the rule of thirds to leading lines and negative space. Learn from other photographers in the community and take your skills to the next level.",
+      "Posts": [
+        {
+          "Title": "This is test title",
+          "Body": "some description about my post",
+          "CreatedBy": "test123",
+          "PostId": 1,
+          "CreatedOn": "Tuesday , Apr 11 2023,11:13"
+        }
+      ]
+    },
+    {
+      "ForumId": 8,
+      "CreatedBy": "abc1",
+      "ForumName": "DNP",
+      "ForumDescription": "A place where you can discuss anything related to dot net programming.",
+      "Posts": [
+        {
+          "Title": "Parameters in .Net",
+          "Body": "Why parameters is used? Can somebody explain to me?",
+          "CreatedBy": "abc1",
+          "PostId": 1,
+          "CreatedOn": "Tuesday , Apr 11 2023,11:39"
+        }
+      ]
     }
   ]
 }

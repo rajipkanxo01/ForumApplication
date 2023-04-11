@@ -1,11 +1,9 @@
-﻿@page "/NavigateToPost/{postId:int}"
+﻿@page "/NavigateToPost/{forumId:int}/{postId:int}"
 @using global::Shared.Models
 @using HTTPClients.ClientInterfaces
-@using Microsoft.IdentityModel.Tokens
 @using global::Shared.DTOs
 @inject IPostService PostService;
 @inject AuthenticationStateProvider Context;
-@* @inject ICommentService CommentService; *@
 
 
 <div class="container mt-5">
@@ -66,6 +64,9 @@
 
     [Parameter]
     public int PostId { get; set; }
+    
+    [Parameter]
+    public int ForumId { get; set; }
 
     // public ICollection<Comment>? comments = new List<Comment>();
     private string? errorLabel = "";
@@ -83,7 +84,7 @@
             AuthenticationState state = await Context.GetAuthenticationStateAsync();
     // CreatedBy = state.User.Identity!.Name;
 
-            currentPost = await PostService.GetPostByIdAsync(PostId);
+            currentPost = await PostService.GetPostByIdAsync(ForumId,PostId);
         }
         catch (Exception e)
         {
@@ -92,6 +93,8 @@
         }
     }
 
+    
+
 
     private async Task CreateAsync()
     {
@@ -99,21 +102,7 @@
 
         try
         {
-    // if (CommentBody.IsNullOrEmpty())
-    // {
-    //     throw new Exception("Comment Body is Empty!!!");
-    // }
-    // Comment toCreateComment = new Comment()
-    // {
-    //     CommentBody = CommentBody,
-    //     PostedByUser = CreatedBy
-    // };
-
-    // await CommentService.CreateAsync(new CreateCommentDto
-    // {
-    //     Comment = toCreateComment,
-    //     PostId = PostId
-    // });
+  
         }
         catch (Exception e)
         {

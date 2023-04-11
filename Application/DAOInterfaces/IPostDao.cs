@@ -8,7 +8,7 @@ public interface IPostDao
     Task<Post> CreateAsync(Post post, int forumId);
     Task<IEnumerable<Post>> GetAllPostsByForumIdAsync(int id);
 
-    Task<Post?> GetPostByIdAsync(int postId);
+    Task<Post?> GetPostByIdAsync(int forumId, int postId);
 
     // Task<IEnumerable<Post>> GetAllPostsAsync();
 
