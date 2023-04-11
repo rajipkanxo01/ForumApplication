@@ -1,0 +1,125 @@
+﻿@page "/NavigateToPost/{postId:int}"
+@using global::Shared.Models
+@using HTTPClients.ClientInterfaces
+@using Microsoft.IdentityModel.Tokens
+@using global::Shared.DTOs
+@inject IPostService PostService;
+@inject AuthenticationStateProvider Context;
+@* @inject ICommentService CommentService; *@
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <article class="post_card">
+
+                @* post info *@
+                <div class="post_card_info">
+                    <p class="post_title">@currentPost.Title</p>
+                    <p>
+                        <span class="icon-link mr-3">
+                            <span class="oi oi-people" aria-hidden="true"></span>
+                            @currentPost.CreatedBy
+                        </span>
+                        <span class="icon-link"> <span class="oi oi-comment-square" aria-hidden="true"></span> 150</span>
+                        <span class="icon-link">
+                            <span class="oi oi-clock" aria-hidden="true"></span>
+                        </span>
+
+                    </p>
+                    <p>
+                        @currentPost.Body
+                    </p>
+                </div>
+
+                @* comment box *@
+                <div class="comment-box">
+                    <textarea @bind="CommentBody" placeholder="Write your comment here..."></textarea>
+                    <button type="submit" @onclick="CreateAsync">Submit</button>
+                </div>
+
+                @* comments start here *@
+                <div class="row d-flex justify-content-center">
+                    <div id="comment-container">
+
+                        <div class="d-flex flex-column justify-content-start ml-2">
+                            <span class="d-block font-weight-bold name"></span>
+                            <span class="date text-black-50"></span>
+                        </div>
+
+                        <div class="mt-3">
+                            <p class="comment-text">
+
+                            </p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public int? PostId { get; set; }
+
+    // public ICollection<Comment>? comments = new List<Comment>();
+    private string? ErrorLabel = "";
+    private Post? currentPost = new Post();
+    public string? CommentBody { get; set; } = null;
+    public string? CreatedBy { get; set; } = null;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            ErrorLabel = "";
+
+            AuthenticationState state = await Context.GetAuthenticationStateAsync();
+            // CreatedBy = state.User.Identity!.Name;
+
+            currentPost = await PostService.GetPostByIdAsync(PostId);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+
+    private async Task CreateAsync()
+    {
+        ErrorLabel = "";
+
+        try
+        {
+            if (CommentBody.IsNullOrEmpty())
+            {
+                throw new Exception("Comment Body is Empty!!!");
+            }
+    // Comment toCreateComment = new Comment()
+    // {
+    //     CommentBody = CommentBody,
+    //     PostedByUser = CreatedBy
+    // };
+
+    // await CommentService.CreateAsync(new CreateCommentDto
+    // {
+    //     Comment = toCreateComment,
+    //     PostId = PostId
+    // });
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+}

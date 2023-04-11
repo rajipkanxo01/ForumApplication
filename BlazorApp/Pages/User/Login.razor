@@ -74,11 +74,11 @@
         errorLabel = "";
         try
         {
-            UserDto dto = new UserDto
-            {
-                Username = userName,
-                Password = password
-            };
+            UserDto dto = new UserDto(userName, password);
+            // {
+            //     Username = userName,
+            //     Password = password
+            // };
             await AuthService.LoginAsync(dto);
             NavMgr.NavigateTo("/");
         }

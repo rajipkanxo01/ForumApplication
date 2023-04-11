@@ -13,39 +13,72 @@ public class PostDao : IPostDao
         this.fileContext = fileContext;
     }
 
-    public Task<Post> CreateAsync(Post post)
+    public Task<Post> CreateAsync(Post post, int forumId)
     {
+        Forum forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == forumId))!;
+
         int postId = 1;
 
-        if (fileContext.Posts.Any())
+        ICollection<Post> posts = forum.Posts!;
+
+
+        if (posts.Any())
         {
-            postId = fileContext.Posts.Max(p => p.PostId);
+            postId = posts.Max(p => p.PostId);
             postId++;
         }
 
         post.PostId = postId;
         post.CreatedOn = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm");
+        // post.Comments = new List<Comment>();
 
-        fileContext.Posts.Add(post);
+        posts.Add(post);
         fileContext.SaveChanges();
         return Task.FromResult(post);
     }
 
-    public Task<Post?> GetPostByIdAsync(int id)
+    public Task<IEnumerable<Post>> GetAllPostsByForumIdAsync(int id)
     {
-        Post? postById = fileContext.Posts.FirstOrDefault((post => post.PostId == id));
-        return Task.FromResult(postById);
+        Forum forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == id))!;
+        IEnumerable<Post> forumPosts = forum.Posts!.AsEnumerable();
+        return Task.FromResult(forumPosts);
     }
 
-    public Task<IEnumerable<Post>> GetAllPostsAsync()
+    public Task<Post?> GetPostByIdAsync(int postId)
     {
-        IEnumerable<Post> posts = fileContext.Posts.AsEnumerable();
-        return Task.FromResult(posts);
+        ICollection<Forum> forums = fileContext.Forums;
+
+        foreach (Forum forum in forums)
+        {
+            Post? post = forum.Posts!.FirstOrDefault(post => post.PostId == postId);
+            return Task.FromResult(post);
+        }
+
+        return (Task<Post?>)Task.FromException(new Exception($"No Post found with Id {postId}"));
     }
 
-    public Task<IEnumerable<Post>> GetAllPostWithBelongsToIdAsync(int id)
-    {
-        IEnumerable<Post> allPostsWithId = fileContext.Posts.Where(post => post.BelongsToId == id);
-        return Task.FromResult(allPostsWithId);
-    }
+    // public Task<IEnumerable<Post>> GetAllPostsAsync()
+    // {
+    //     IEnumerable<Post> posts = fileContext.Posts.AsEnumerable();
+    //     return Task.FromResult(posts);
+    // }
+
+    // public Task<Comment> CreateCommentAsync(int id, Comment comment)
+    // {
+    //     int commentId = 1;
+    //     Post? post = GetPostByIdAsync(id).Result;
+    //
+    //     if (post!.Comments!.Any())
+    //     {
+    //         commentId = post.Comments!.Max(p => p.CommentId);
+    //         commentId++;
+    //     }
+    //
+    //     comment.CommentId = commentId;
+    //     comment.CreatedOn = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm");
+    //
+    //     post.Comments!.Add(comment);
+    //     fileContext.SaveChanges();
+    //     return Task.FromResult(comment);
+    // }
 }

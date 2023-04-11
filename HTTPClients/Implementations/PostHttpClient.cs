@@ -9,19 +9,20 @@ namespace HTTPClients.Implementations;
 
 public class PostHttpClient : IPostService
 {
-    private HttpClient client;
-    public string? Jwt { get; set; } = UserHttpClient.Jwt;
+    public string? Jwt { get; set; }
+    private readonly HttpClient client;
 
     public PostHttpClient(HttpClient client)
     {
         this.client = client;
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Jwt);
     }
 
-    public async Task<Post?> CreateAsync(PostDto postDto)
+    public async Task<Post?> CreateAsync(CreatePostDto postDto)
     {
-        
+        LoadClientWithToken();
+
         HttpResponseMessage responseMessage = await client.PostAsJsonAsync("/post/create", postDto);
+        Console.WriteLine(responseMessage.RequestMessage!.RequestUri);
         string? result = await responseMessage.Content.ReadAsStringAsync();
 
         if (!responseMessage.IsSuccessStatusCode)
@@ -33,9 +34,28 @@ public class PostHttpClient : IPostService
         return post;
     }
 
-    public async Task<ICollection<Post>> GetPostsByForumId(int id)
+    public async Task<Post?> GetPostByIdAsync(int? postId)
     {
-        HttpResponseMessage responseMessage = await client.GetAsync($"/Post/{id}");
+        HttpResponseMessage responseMessage = await client.GetAsync($"/Post/viewpost/{postId}");
+        string result = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+        ;
+
+        if (!responseMessage.IsSuccessStatusCode)
+        {
+            throw new Exception(result); 
+        }
+
+        Post? post = JsonSerializer.Deserialize<Post>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+
+        return post;
+    }
+
+    public async Task<ICollection<Post>> GetPostsByForumIdAsync(int id)
+    {
+        HttpResponseMessage responseMessage = await client.GetAsync($"/Post/forum/{id}");
         string result = await responseMessage.Content.ReadAsStringAsync();
 
         if (!responseMessage.IsSuccessStatusCode)
@@ -48,5 +68,11 @@ public class PostHttpClient : IPostService
             PropertyNameCaseInsensitive = true
         })!;
         return allPosts;
+    }
+    
+    private async void LoadClientWithToken()
+    {
+        Jwt = await UserHttpClient.GetJwtToken();
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Jwt);
     }
 }

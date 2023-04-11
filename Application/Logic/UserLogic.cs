@@ -27,16 +27,16 @@ public class UserLogic : IUserLogic
 
         ValidateUserData(userDto);
 
-        User? toCreate = new User()
-        {
-            Username = userDto.Username,
-            Password = userDto.Password
-        };
+        User? toCreate = new User(userDto.Username, userDto.Password);
+        // {
+        //     Username = userDto.Username,
+        //     Password = userDto.Password
+        // };
 
         User? createdUser = await userDao.CreateAsync(toCreate);
         return createdUser;
     }
-    
+
     public async Task<User> ValidateUser(UserDto userDto)
     {
         IEnumerable<User?> allUsers = await userDao.GetAllUsersAsync();

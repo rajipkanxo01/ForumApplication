@@ -16,6 +16,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthProvider>();
 builder.Services.AddScoped<IForumService, ForumHttpClient>();
 builder.Services.AddScoped<IPostService, PostHttpClient>();
 
+
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7091") });
 
 

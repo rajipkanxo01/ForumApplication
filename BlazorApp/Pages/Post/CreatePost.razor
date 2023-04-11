@@ -1,4 +1,4 @@
-﻿@page "/{belongsToForumId:int}/CreatePost"
+﻿@page "/{forumId:int}/CreatePost"
 @using HTTPClients.ClientInterfaces
 @using global::Shared.Models
 @using Microsoft.IdentityModel.Tokens
@@ -26,7 +26,7 @@
             <label for="community">Community</label>
             <input type="text" placeholder="Forum Name" value="@ForumName" disabled>
         </div>
-        <button type="submit" @onclick="CreateAsync">Post</button>
+        <button type="submit" @onclick="@(() => CreateAsync(ForumId))">Post</button>
     </form>
 </div>
 
@@ -39,18 +39,18 @@
     public string? ErrorLabel { get; set; }
 
     [Parameter]
-    public int BelongsToForumId { get; set; }
+    public int ForumId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         AuthenticationState state = await Context.GetAuthenticationStateAsync();
         PostCreatedBy = state.User.Identity!.Name;
 
-        Forum forumById = await ForumService.GetForumById(BelongsToForumId);
+        Forum forumById = await ForumService.GetForumById(ForumId);
         ForumName = forumById.ForumName;
     }
 
-    public async Task CreateAsync()
+    public async Task CreateAsync(int forumId)
     {
         ErrorLabel = "";
 
@@ -61,15 +61,21 @@
                 throw new Exception("Fields are empty!!!");
             }
 
-            PostDto postDto = new PostDto
-            {
-                Title = PostTitle,
-                BelongsToId = BelongsToForumId,
-                CreatedBy = PostCreatedBy,
-                Body = PostDescription
-            };
-            await PostService.CreateAsync(postDto);
-            Manager.NavigateTo($"/NavigateToForum/{BelongsToForumId}");
+            PostDto postDto = new PostDto(PostTitle, PostCreatedBy, PostDescription);
+    // {
+    //     Title = PostTitle,
+    //     CreatedBy = PostCreatedBy,
+    //     Body = PostDescription
+    // };
+
+            CreatePostDto dto = new CreatePostDto(postDto, ForumId);
+    // {
+    //     ForumId = ForumId,
+    //     PostDto = postDto
+    // };
+
+            await PostService.CreateAsync(dto);
+            Manager.NavigateTo($"/NavigateToForum/{forumId}");
         }
         catch (Exception e)
         {
@@ -77,5 +83,6 @@
             ErrorLabel = $"Error: {e.Message}";
         }
     }
+    
 
 }

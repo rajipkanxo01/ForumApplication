@@ -66,16 +66,13 @@
                 {
                     throw new Exception("Empty field Not Allowed!!");
                 }
-                Task<Forum> async = Task.FromResult(await ForumService.CreateAsync(new ForumDto
-                {
-                    CreatedBy = createdBy,
-                    ForumTitle = forumTitle,
-                    ForumDescription = forumDescription
-                }))!;
-                if (async.IsCompleted)
-                {
-                    NavMgr.NavigateTo("https://localhost:7027");
-                }
+                await ForumService.CreateAsync(new ForumDto(createdBy, forumTitle, forumDescription));
+                NavMgr.NavigateTo("/ViewForums");
+    // {
+    //     CreatedBy = createdBy,
+    //     ForumTitle = forumTitle,
+    //     ForumDescription = forumDescription
+    // });
             }
             catch (Exception e)
             {

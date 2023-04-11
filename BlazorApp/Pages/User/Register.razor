@@ -78,11 +78,11 @@
         {
             try
             {
-                await UserService.RegisterUserAsync(new UserDto
-                {
-                    Username = username,
-                    Password = password
-                });
+                await UserService.RegisterUserAsync(new UserDto(username, password));
+    // {
+    //     Username = username,
+    //     Password = password
+    // });
                 NavMgr.NavigateTo("/login");
             }
             catch (Exception e)

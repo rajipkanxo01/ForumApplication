@@ -70,7 +70,7 @@ public class ForumHttpClient : IForumService
         })!;
         return forum;
     }
-    
+        
     private async void LoadClientWithToken()
     {
         Jwt = await UserHttpClient.GetJwtToken();

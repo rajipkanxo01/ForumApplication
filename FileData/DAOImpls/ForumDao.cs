@@ -23,6 +23,7 @@ public class ForumDao : IForumDao
         }
 
         toCreateForum.ForumId = forumId;
+        toCreateForum.Posts = new List<Post>();
         context.Forums.Add(toCreateForum);
         context.SaveChanges();
 
@@ -39,5 +40,11 @@ public class ForumDao : IForumDao
     {
         Forum? existingForum = context.Forums.FirstOrDefault(forum => forum.ForumId == id);
         return Task.FromResult(existingForum);
+    }
+
+    public Task<IEnumerable<Post>> GetAllPostsOfForum(int id)
+    {
+        Forum? forum = GetForumByIdAsync(id).Result;
+        return Task.FromResult(forum!.Posts!.AsEnumerable());
     }
 }

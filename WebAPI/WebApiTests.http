@@ -15,9 +15,25 @@ POST https://localhost:7091/post/create
 Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIyMWM1OTM4ZS0yMjY5LTQyNTgtODQ5Ny03OGY3NTRhNWEzNjQiLCJpYXQiOiI0LzcvMjAyMyAyOjAwOjU3IFBNIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InJhamlwa2FueG8wMSIsImV4cCI6MTY4MDg3OTY1NywiaXNzIjoiSldUQXV0aGVudGljYXRpb25TZXJ2ZXIiLCJhdWQiOiJKV1RTZXJ2aWNlU2VydmVyQXBwIn0.bx3SYs3QEHfRheWZWBHMU6ekUHDOrpNzmymIsPwzkI50tuWvEYoXAh4Rj4OQp_oyfyrCrMts5eBztTsc74S6iw
 Content-Type: application/json
 
-{"Title" :  "test title", "Body" : "this is body for my test title", "CreatedBY": "rajipkanxo01" , "BelongsToId" : "1" , "PostId" : "1";  }
 
+###
+GET https://localhost:7091/Forum/1
+
+###
+#get all post in a forum
+GET https://localhost:7091/Post/forum/1
 
 
 ###
-GET https://localhost:7091/Post/1
+#get specific post according to id
+GET https://localhost:7091/Post/viewpost/2
+
+###
+POST https://localhost:7091/Comment/create
+Content-Type: application/json
+
+{
+  "CommentBody": "This is a sample comment.",
+  "PostedByUser": "John Doe"
+}
+

@@ -17,14 +17,6 @@ public class FileContext
         }
     }
 
-    public ICollection<Post> Posts
-    {
-        get
-        {
-            LoadData();
-            return dataContainer!.Posts;
-        }
-    }
 
     public ICollection<Forum> Forums
     {
@@ -34,6 +26,8 @@ public class FileContext
             return dataContainer!.Forums;
         }
     }
+
+   
 
 
     private void LoadData()
@@ -46,7 +40,6 @@ public class FileContext
             {
                 Forums = new List<Forum>(),
                 Users = new List<User>(),
-                Posts = new List<Post>()
             };
             return;
         }

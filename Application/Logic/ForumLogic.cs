@@ -17,12 +17,12 @@ public class ForumLogic : IForumLogic
 
     public async Task<Forum?> CreateAsync(ForumDto forumDto)
     {
-        Forum? forum = new Forum
-        {
-            CreatedBy = forumDto.CreatedBy,
-            ForumName = forumDto.ForumTitle,
-            ForumDescription = forumDto.ForumDescription
-        };
+        Forum? forum = new Forum(forumDto.CreatedBy, forumDto.ForumTitle, forumDto.ForumDescription);
+        // {
+        //     CreatedBy = forumDto.CreatedBy,
+        //     ForumName = forumDto.ForumTitle,
+        //     ForumDescription = forumDto.ForumDescription
+        // };
         Forum? createdForum = await forumDao.CreateAsync(forum);
         return createdForum;
     }
@@ -35,5 +35,10 @@ public class ForumLogic : IForumLogic
     public Task<Forum?> GetForumByIdAsync(int id)
     {
         return forumDao.GetForumByIdAsync(id);
+    }
+
+    public Task<IEnumerable<Post>> GetAllPostsAsync(int id)
+    {
+        return forumDao.GetAllPostsOfForum(id);
     }
 }

@@ -25,6 +25,8 @@ builder.Services.AddScoped<IForumLogic, ForumLogic>();
 builder.Services.AddScoped<IPostDao, PostDao>();
 builder.Services.AddScoped<IPostLogic, PostLogic>();
 
+
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;

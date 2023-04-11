@@ -61,4 +61,20 @@ public class ForumController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+
+
+    [HttpGet("{id:int}/allPosts")]
+    public async Task<ActionResult<IEnumerable<Post>>> GetAllPostsOfForumAsync([FromRoute] int id)
+    {
+        try
+        {
+            IEnumerable<Post> forum = await forumLogic.GetAllPostsAsync(id);
+            return Ok(forum);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
 }

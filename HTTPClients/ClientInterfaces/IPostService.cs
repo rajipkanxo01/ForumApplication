@@ -5,7 +5,7 @@ namespace HTTPClients.ClientInterfaces;
 
 public interface IPostService
 {
-    Task<Post?> CreateAsync(PostDto postDto);
-    Task<ICollection<Post>> GetPostsByForumId(int id);
-
+    Task<ICollection<Post>> GetPostsByForumIdAsync(int id);
+    Task<Post?> GetPostByIdAsync(int? postId);
+    Task<Post?> CreateAsync(CreatePostDto postDto);
 }

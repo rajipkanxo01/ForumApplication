@@ -18,11 +18,11 @@ public class PostController : ControllerBase
     }
 
     [HttpPost, Route("create"), Authorize]
-    public async Task<ActionResult<Post>> CreateAsync(PostDto postDto)
+    public async Task<ActionResult<Post>> CreateAsync(CreatePostDto createPostDto)
     {
         try
         {
-            Post post = await postLogic.CreateAsync(postDto);
+            Post post = await postLogic.CreateAsync(createPostDto);
             return Created($"/post/{post.PostId}", post);
         }
         catch (Exception e)
@@ -32,12 +32,12 @@ public class PostController : ControllerBase
         }
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet("forum/{id:int}")]
     public async Task<ActionResult<IEnumerable<Post>>> GetAllPostByForumId([FromRoute] int id)
     {
         try
         {
-            IEnumerable<Post> allPosts = await postLogic.GetPostByForumAsync(id);
+            IEnumerable<Post> allPosts = await postLogic.GetAllPostsByForumIdAsync(id);
             return Ok(allPosts);
         }
         catch (Exception e)
@@ -46,4 +46,21 @@ public class PostController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+
+    [HttpGet("viewpost/{postId:int}")]
+    public async Task<ActionResult<Post>> GetPostById([FromRoute] int postId)
+    {
+        try
+        {
+            Post? post = await postLogic.GetPostByIdAsync(postId);
+            return Ok(post);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+    }
+    
+    
 }

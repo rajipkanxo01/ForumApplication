@@ -14,29 +14,40 @@ public class PostLogic : IPostLogic
         this.postDao = postDao;
     }
 
-    public Task<Post> CreateAsync(PostDto postDto)
+    public async Task<Post> CreateAsync(CreatePostDto createPostDto)
     {
-        Post createdPost = new Post
+        PostDto postDto = createPostDto.PostDto!;
+        
+        Post createdPost = new Post ()
         {
             Title = postDto.Title,
             Body = postDto.Body,
-            BelongsToId = postDto.BelongsToId,
             CreatedBy = postDto.CreatedBy
         };
-        postDao.CreateAsync(createdPost);
-        return Task.FromResult(createdPost);
+        Post post = await postDao.CreateAsync(createdPost,createPostDto.ForumId);
+        return post;
     }
 
-    public Task<Post?> GetPostByIdAsync(int postId)
+    public async Task<Post?> GetPostByIdAsync(int postId)
     {
-        return postDao.GetPostByIdAsync(postId);
+        Post? post = await postDao.GetPostByIdAsync(postId);
+        return post;
     }
 
-    public Task<IEnumerable<Post>> GetPostByForumAsync(int forumId)
+   public async Task<IEnumerable<Post>> GetAllPostsByForumIdAsync(int forumId)
+   {
+       IEnumerable<Post> posts = await postDao.GetAllPostsByForumIdAsync(forumId);
+       return posts;
+    }
+
+    /*public Task<Comment> CreateCommentAsync(int id, CommentDto commentDto)
     {
-        IEnumerable<Post> allPostsAsync = postDao.GetAllPostsAsync().Result;
-        IEnumerable<Post> posts = allPostsAsync.Where(post => post.BelongsToId == forumId);
-        return Task.FromResult(posts);
-
-    }
+        Comment createdComment = new Comment
+        {
+            CommentBody = commentDto.CommentBody,
+            PostedByUserId = commentDto.PostedByUserId
+        };
+        postDao.CreateCommentAsync(id, createdComment);
+        return Task.FromResult(createdComment);
+    }*/
 }

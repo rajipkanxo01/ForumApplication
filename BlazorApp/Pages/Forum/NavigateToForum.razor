@@ -22,6 +22,16 @@
     </div>
 </section>
 
+@if (posts == null)
+{
+    <span>Loading.......</span>
+}
+else if (!posts.Any())
+{
+    <span>No posts found.....</span>
+}
+else
+{
 @foreach (Post post in posts!)
 {
     <div class="container mt-5">
@@ -44,13 +54,19 @@
                         <p>
                             @post.Body
                         </p>
-                        <a href="#" class="btn ">View Comments</a>
+                        <a href="#" class="btn" @onclick="@(() => NavigationManager.NavigateTo($"/NavigateToPost/{post.PostId}"))">View Comments</a>
+                        @* <a href="#" class="btn" ))> View Comments</a> *@
+
                     </div>
                 </article>
             </div>
         </div>
     </div>
 }
+}
+
+
+
 
 @code {
 
@@ -75,7 +91,7 @@
             Forum forumById = await ForumService.GetForumById(Id);
             forumTitle = forumById.ForumName;
 
-            posts = await PostService.GetPostsByForumId(Id);
+            posts = await PostService.GetPostsByForumIdAsync(Id);
         }
         catch (Exception e)
         {
