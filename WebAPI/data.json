@@ -5,12 +5,16 @@
       "Password": "20602059"
     },
     {
-      "Username": "vikcy2005",
-      "Password": "iamVicky"
+      "Username": "roshan",
+      "Password": "iamRoshan"
     },
     {
-      "Username": "roshan1",
-      "Password": "roshan2055"
+      "Username": "panduPanda",
+      "Password": "pandu123"
+    },
+    {
+      "Username": "pramessth1",
+      "Password": "qwert1234"
     }
   ],
   "Forums": [
@@ -18,57 +22,94 @@
       "ForumId": 1,
       "CreatedBy": "rajipkanxo01",
       "ForumName": "Tech Talk",
-      "ForumDescription": "For tech enthusiasts and professionals, this is the place to discuss the latest tech trends, gadgets, and innovations. From programming to cybersecurity, gaming to AI, join the conversation about all things tech-related."
+      "ForumDescription": " For tech enthusiasts and professionals, this is the place to discuss the latest tech trends, gadgets, and innovations. From programming to cybersecurity, gaming to AI, join the conversation about all things tech-related.",
+      "Posts": [
+        {
+          "Title": "The Impact of 5G on Technology and Society",
+          "Body": "As 5G networks become more widespread, how will they transform the way we communicate, work, and live? Join this discussion to explore the possibilities of 5G technology and its implications for society.",
+          "CreatedBy": "rajipkanxo01",
+          "PostId": 1,
+          "CreatedOn": "Sunday , Apr 09 2023,12:45"
+        },
+        {
+          "Title": "The Future of Tech: Predictions and Possibilities",
+          "Body": "Technology is advancing at an incredible rate, and it\u0027s fascinating to think about where it might take us in the future. In this post, let\u0027s discuss our predictions for the future of tech, and the possibilities that new technology might unlock. From artificial intelligence to virtual reality, self-driving cars to space travel, there are countless ways that technology could shape our world in the years to come.\n\nWhat do you think the biggest technological breakthroughs of the next decade will be? Will robots replace human workers in certain industries? Will we achieve human-like artificial intelligence? Will space tourism become a reality for everyday people? Share your thoughts and engage in thoughtful discussion with other members of the community. Let\u0027s explore the future of tech together!",
+          "CreatedBy": "roshan",
+          "PostId": 2,
+          "CreatedOn": "Sunday , Apr 09 2023,12:59"
+        },
+        {
+          "Title": "The Role of Cybersecurity in a Digital World",
+          "Body": "\"With more and more of our lives taking place online, cybersecurity has become an increasingly important issue. In this post, discuss the role of cybersecurity in a digital world, from protecting personal information to safeguarding critical infrastructure. Share your thoughts on the latest trends and developments in cybersecurity and offer advice for staying safe online.\"",
+          "CreatedBy": "rajipkanxo01",
+          "PostId": 3,
+          "CreatedOn": "Tuesday , Apr 11 2023,10:56"
+        },
+        {
+          "Title": "The Future of Work: Adapting to the Changing Landscape",
+          "Body": "The COVID-19 pandemic has accelerated the shift towards remote work, and the future of work looks very different than it did just a few years ago. In this post, discuss the changing landscape of work and the skills and technologies that will be essential for success in the future. Share your own experiences with remote work and offer advice for others who are adapting to this new way of working.",
+          "CreatedBy": "roshan",
+          "PostId": 4,
+          "CreatedOn": "Tuesday , Apr 11 2023,10:56"
+        },
+        {
+          "Title": "The Ethics of AI: Balancing Innovation and Responsibility",
+          "Body": "As AI continues to advance at a rapid pace, it's important to consider the ethical implications of this technology. In this post, discuss the ethical considerations surrounding AI, from bias and privacy concerns to the potential impact on employment and society as a whole. Share your thoughts on how we can balance innovation with responsibility and ensure that AI is used for the greater good.",
+          "CreatedBy": "panduPanda",
+          "PostId": 5,
+          "CreatedOn": "Tuesday , Apr 11 2023,10:56"
+        }
+      ]
     },
     {
       "ForumId": 2,
       "CreatedBy": "rajipkanxo01",
       "ForumName": "Travel Tales",
-      "ForumDescription": "Share your travel experiences and recommendations with fellow globetrotters in this sub forum. Whether you\u0027re a backpacker, luxury traveler, or anything in between, connect with others who share your love of exploring new places and cultures."
+      "ForumDescription": "Share your travel experiences and recommendations with fellow globetrotters in this sub forum. Whether you\u0027re a backpacker, luxury traveler, or anything in between, connect with others who share your love of exploring new places and cultures.",
+      "Posts": []
     },
     {
       "ForumId": 3,
-      "CreatedBy": "rajipkanxo01",
-      "ForumName": "Gaming News",
-      "ForumDescription": "Stay up-to-date with the latest gaming news and industry updates in this sub forum. From console releases to game announcements, share your thoughts and insights on what\u0027s happening in the gaming world."
+      "CreatedBy": "pramessth1",
+      "ForumName": "The Magic of the Silver Screen",
+      "ForumDescription": "This forum is dedicated to all things film and TV. Share your favorite movies and TV shows, discuss your favorite actors and directors, and engage in lively debates about the latest releases and cinematic trends.",
+      "Posts": [
+        {
+          "Title": "The Best Movies and TV Shows You\u0027ve Never Heard Of",
+          "Body": "There are countless hidden gems in the world of film and TV, and sharing them with others can be a great way to discover something new. In this post, share your favorite obscure movies and TV shows, and discuss why you love them. Discover new recommendations from other members of the community, and broaden your horizons with lesser-known titles.",
+          "CreatedBy": "pramessth1",
+          "PostId": 1,
+          "CreatedOn": "Tuesday , Apr 11 2023,10:54"
+        },
+        {
+          "Title": "Debating the Best Movie Endings of All Time",
+          "Body": "A great movie ending can leave a lasting impression, whether it\\u0027s a twist, a catharsis, or a sense of closure. In this post, share your thoughts on the best movie endings of all time, and engage in friendly debate with other members of the community. Discuss what makes an ending great, and discover new movies to add to your must-watch list.\"",
+          "CreatedBy": "rajipkanxo01",
+          "PostId": 2,
+          "CreatedOn": "Tuesday , Apr 11 2023,10:55"
+        }
+      ]
     },
     {
       "ForumId": 4,
-      "CreatedBy": "rajipkanxo01",
-      "ForumName": "Retro Gaming",
-      "ForumDescription": "For those who love classic games and consoles, this sub forum is for you. Discuss your favorite retro games, consoles, and accessories, and connect with fellow gamers who share your passion for nostalgia."
+      "CreatedBy": "panduPanda",
+      "ForumName": "Capturing Life\u0027s Moments: A Community of Photographers",
+      "ForumDescription": "Photography is a powerful medium for capturing and preserving life\u0027s most meaningful moments. In this forum, share your photos and discuss techniques and equipment, and learn from other photographers in the community.",
+      "Posts": []
     },
     {
       "ForumId": 5,
-      "CreatedBy": "roshan1",
-      "ForumName": "Cooking and Recipes",
-      "ForumDescription": "Food brings people together, and this forum is the perfect place to share recipes, cooking techniques, and culinary adventures. Whether you\u0027re a seasoned chef or a novice cook, join the conversation and learn something new."
-    }
-  ],
-  "Posts": [
-    {
-      "Title": "The Impact of 5G on Technology and Society",
-      "Body": "As 5G networks become more widespread, how will they transform the way we communicate, work, and live? Join this discussion to explore the possibilities of 5G technology and its implications for society.",
-      "CreatedBy": "rajipkanxo01",
-      "BelongsToId": 1,
-      "PostId": 1,
-      "CreatedOn": "Saturday , Apr 08 2023,01:35"
+      "CreatedBy": "panduPanda",
+      "ForumName": "Discovering the Past and Celebrating Diversity",
+      "ForumDescription": "History and culture are important aspects of our world that deserve to be explored and celebrated. In this forum, share your favorite historical events and cultural traditions, discuss different perspectives on history, and learn from others in the community.",
+      "Posts": []
     },
     {
-      "Title": "The Rise of the Internet of Things",
-      "Body": "The Internet of Things (IoT) refers to the growing network of connected devices, from smart thermostats to fitness trackers. In this post, let\u0027s discuss the potential benefits and risks of IoT and how it may impact our daily lives.",
-      "CreatedBy": "rajipkanxo01",
-      "BelongsToId": 1,
-      "PostId": 2,
-      "CreatedOn": "Saturday , Apr 08 2023,01:36"
-    },
-    {
-      "Title": "The Ethics of AI: Balancing Innovation and Responsibility",
-      "Body": "As AI becomes more advanced, it raises important ethical questions about privacy, bias, and accountability. Let\u0027s explore the ethical considerations surrounding AI and how we can balance innovation with responsibility. Join the conversation and share your thoughts on this critical issue.",
-      "CreatedBy": "rajipkanxo01",
-      "BelongsToId": 1,
-      "PostId": 3,
-      "CreatedOn": "Saturday , Apr 08 2023,01:37"
+      "ForumId": 6,
+      "CreatedBy": "roshan",
+      "ForumName": "Furry Friends and Feathery Companions",
+      "ForumDescription": "This forum is dedicated to all things pets. Share your stories and photos of your favorite furry, feathery, or scaly friends, discuss pet care and training tips, and get advice from other pet lovers.",
+      "Posts": []
     }
   ]
 }

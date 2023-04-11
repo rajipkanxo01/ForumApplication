@@ -16,15 +16,15 @@
     <form>
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" @bind="PostTitle" placeholder="Enter your post title" required>
+            <input type="text" @bind="postTitle" placeholder="Enter your post title" required>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea id="description" @bind="PostDescription" placeholder="Enter your post description" required></textarea>
+            <textarea id="description" @bind="postDescription" placeholder="Enter your post description" required></textarea>
         </div>
         <div class="form-group">
             <label for="community">Community</label>
-            <input type="text" placeholder="Forum Name" value="@ForumName" disabled>
+            <input type="text" placeholder="Forum Name" value="@forumName" disabled>
         </div>
         <button type="submit" @onclick="@(() => CreateAsync(ForumId))">Post</button>
     </form>
@@ -32,11 +32,11 @@
 
 
 @code {
-    public string? PostTitle { get; set; }
-    public string? PostDescription { get; set; }
-    public string? PostCreatedBy { get; set; }
-    public string? ForumName { get; set; }
-    public string? ErrorLabel { get; set; }
+    private string? postTitle;
+    private string? postDescription;
+    private string? postCreatedBy;
+    private string? forumName;
+    private string? errorLabel;
 
     [Parameter]
     public int ForumId { get; set; }
@@ -44,24 +44,24 @@
     protected override async Task OnInitializedAsync()
     {
         AuthenticationState state = await Context.GetAuthenticationStateAsync();
-        PostCreatedBy = state.User.Identity!.Name;
+        postCreatedBy = state.User.Identity!.Name;
 
         Forum forumById = await ForumService.GetForumById(ForumId);
-        ForumName = forumById.ForumName;
+        forumName = forumById.ForumName;
     }
 
     public async Task CreateAsync(int forumId)
     {
-        ErrorLabel = "";
+        errorLabel = "";
 
         try
         {
-            if (PostTitle.IsNullOrEmpty() || PostDescription.IsNullOrEmpty() || ForumName.IsNullOrEmpty() || PostCreatedBy.IsNullOrEmpty())
+            if (postTitle.IsNullOrEmpty() || postDescription.IsNullOrEmpty() || forumName.IsNullOrEmpty() || postCreatedBy.IsNullOrEmpty())
             {
                 throw new Exception("Fields are empty!!!");
             }
 
-            PostDto postDto = new PostDto(PostTitle, PostCreatedBy, PostDescription);
+            PostDto postDto = new PostDto(postTitle, postDescription, postCreatedBy);
     // {
     //     Title = PostTitle,
     //     CreatedBy = PostCreatedBy,
@@ -80,9 +80,9 @@
         catch (Exception e)
         {
             Console.WriteLine(e);
-            ErrorLabel = $"Error: {e.Message}";
+            errorLabel = $"Error: {e.Message}";
         }
     }
-    
+
 
 }

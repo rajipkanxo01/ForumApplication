@@ -12,7 +12,7 @@
         <div class="col-md-8">
             <h1>@forumTitle</h1>
         </div>
-        @if (IsAuthorized)
+        @if (isAuthorized)
         {
             <div class="col-md-4">
                 <btn class="create_button" @onclick="@(() => NavigationManager.NavigateTo($"/{Id}/CreatePost"))">Create Post</btn>
@@ -76,7 +76,7 @@ else
     private string? errorLabel = "";
     private string? forumTitle;
     private IEnumerable<Post>? posts = new List<Post>();
-    private bool IsAuthorized { get; set; } = false;
+    private bool isAuthorized = false;
 
 
     protected override async Task OnInitializedAsync()
@@ -86,7 +86,7 @@ else
         try
         {
             AuthenticationState state = await Context.GetAuthenticationStateAsync();
-            if (state.User.Identity != null) IsAuthorized = state.User.Identity.IsAuthenticated;
+            if (state.User.Identity != null) isAuthorized = state.User.Identity.IsAuthenticated;
 
             Forum forumById = await ForumService.GetForumById(Id);
             forumTitle = forumById.ForumName;

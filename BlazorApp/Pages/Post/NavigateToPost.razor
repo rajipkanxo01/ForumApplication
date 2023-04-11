@@ -23,7 +23,7 @@
                         </span>
                         <span class="icon-link"> <span class="oi oi-comment-square" aria-hidden="true"></span> 150</span>
                         <span class="icon-link">
-                            <span class="oi oi-clock" aria-hidden="true"></span>
+                            <span class="oi oi-clock" aria-hidden="true">@currentPost.CreatedOn</span>
                         </span>
 
                     </p>
@@ -34,7 +34,7 @@
 
                 @* comment box *@
                 <div class="comment-box">
-                    <textarea @bind="CommentBody" placeholder="Write your comment here..."></textarea>
+                    <textarea  placeholder="Write your comment here..."></textarea>
                     <button type="submit" @onclick="CreateAsync">Submit</button>
                 </div>
 
@@ -65,23 +65,23 @@
 @code {
 
     [Parameter]
-    public int? PostId { get; set; }
+    public int PostId { get; set; }
 
     // public ICollection<Comment>? comments = new List<Comment>();
-    private string? ErrorLabel = "";
+    private string? errorLabel = "";
     private Post? currentPost = new Post();
-    public string? CommentBody { get; set; } = null;
-    public string? CreatedBy { get; set; } = null;
+    // public string? CommentBody { get; set; } = null;
+    // public string? CreatedBy { get; set; } = null;
 
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            ErrorLabel = "";
+            errorLabel = "";
 
             AuthenticationState state = await Context.GetAuthenticationStateAsync();
-            // CreatedBy = state.User.Identity!.Name;
+    // CreatedBy = state.User.Identity!.Name;
 
             currentPost = await PostService.GetPostByIdAsync(PostId);
         }
@@ -95,14 +95,14 @@
 
     private async Task CreateAsync()
     {
-        ErrorLabel = "";
+        errorLabel = "";
 
         try
         {
-            if (CommentBody.IsNullOrEmpty())
-            {
-                throw new Exception("Comment Body is Empty!!!");
-            }
+    // if (CommentBody.IsNullOrEmpty())
+    // {
+    //     throw new Exception("Comment Body is Empty!!!");
+    // }
     // Comment toCreateComment = new Comment()
     // {
     //     CommentBody = CommentBody,

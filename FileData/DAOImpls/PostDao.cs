@@ -15,7 +15,7 @@ public class PostDao : IPostDao
 
     public Task<Post> CreateAsync(Post post, int forumId)
     {
-        Forum forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == forumId))!;
+        Forum? forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == forumId))!;
 
         int postId = 1;
 
@@ -39,14 +39,14 @@ public class PostDao : IPostDao
 
     public Task<IEnumerable<Post>> GetAllPostsByForumIdAsync(int id)
     {
-        Forum forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == id))!;
+        Forum? forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == id))!;
         IEnumerable<Post> forumPosts = forum.Posts!.AsEnumerable();
         return Task.FromResult(forumPosts);
     }
 
     public Task<Post?> GetPostByIdAsync(int postId)
     {
-        ICollection<Forum> forums = fileContext.Forums;
+        ICollection<Forum>? forums = fileContext.Forums;
 
         foreach (Forum forum in forums)
         {

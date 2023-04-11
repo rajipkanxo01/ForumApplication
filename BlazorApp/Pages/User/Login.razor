@@ -62,12 +62,10 @@
 </div>
 
 
-
-
 @code {
-    private string userName;
-    private string password;
-    private string errorLabel;
+    private string? userName;
+    private string? password;
+    private string? errorLabel;
 
     private async Task LoginAsync()
     {
@@ -75,10 +73,10 @@
         try
         {
             UserDto dto = new UserDto(userName, password);
-            // {
-            //     Username = userName,
-            //     Password = password
-            // };
+    // {
+    //     Username = userName,
+    //     Password = password
+    // };
             await AuthService.LoginAsync(dto);
             NavMgr.NavigateTo("/");
         }

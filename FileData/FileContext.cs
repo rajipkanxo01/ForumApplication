@@ -18,7 +18,7 @@ public class FileContext
     }
 
 
-    public ICollection<Forum> Forums
+    public ICollection<Forum>? Forums
     {
         get
         {
