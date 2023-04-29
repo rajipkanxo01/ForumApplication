@@ -1,27 +1,53 @@
 ﻿using Application.DAOInterfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Shared.Models;
 
 namespace EfcDataAccess.DAOs;
 
 public class PostEfcDao : IPostDao
 {
-    public Task<Post> CreateAsync(Post post, int forumId)
+    private readonly ForumContext context;
+
+    public PostEfcDao(ForumContext context)
     {
-        throw new NotImplementedException();
+        this.context = context;
     }
 
-    public Task<IEnumerable<Post>> GetAllPostsByForumIdAsync(int id)
+    public async Task<Post> CreateAsync(Post post, int forumId)
     {
-        throw new NotImplementedException();
+        Forum? forum = await context.Forums.FirstOrDefaultAsync(forum => forum.ForumId == forumId);
+
+        if (forum == null)
+        {
+            throw new Exception($"Forum with id {forumId} not found!!");
+        }
+
+        post.CreatedOn = DateTime.Now.ToString();
+        forum.Posts!.Add(post);
+        await context.SaveChangesAsync();
+        return post;
+
+        // }
     }
 
-    public Task<Post?> GetPostByIdAsync(int forumId, int postId)
+    public async Task<IEnumerable<Post>> GetAllPostsByForumIdAsync(int id)
     {
-        throw new NotImplementedException();
+        Forum? forum = await context.Forums.Include(forum => forum.Posts)
+            .FirstOrDefaultAsync(forum => forum.ForumId == id);
+
+        if (forum == null)
+        {
+            throw new Exception($"Forum with id {id} not found");
+        }
+
+        IEnumerable<Post>? posts = forum!.Posts;
+        return posts;
     }
 
-    public Task<Post> CreateAsync(Post createdPost)
+    public async Task<Post?> GetPostByIdAsync(int forumId, int postId)
     {
-        throw new NotImplementedException();
+        Post? post = await context.Posts.FirstOrDefaultAsync(post => post.PostId == postId);
+        return post;
     }
 }

@@ -17,6 +17,7 @@ public class ForumEfcDao : IForumDao
 
     public async Task<Forum?> CreateAsync(Forum toCreateForum)
     {
+        // toCreateForum.Posts = new List<Post>();
         EntityEntry<Forum> createdForum = await context.Forums.AddAsync(toCreateForum);
         await context.SaveChangesAsync();
         return createdForum.Entity;
@@ -37,8 +38,7 @@ public class ForumEfcDao : IForumDao
 
     public async Task<IEnumerable<Post>> GetAllPostsOfForum(int id)
     {
-        // var postsForForum = context.Posts.Where(post => post.Fo)
-        /*Forum? forum = await context.Forums.Include(forum => forum.Posts)
+        Forum? forum = await context.Forums.Include(forum => forum.Posts)
             .FirstOrDefaultAsync(forum => forum.ForumId == id);
 
         if (forum == null)
@@ -47,7 +47,6 @@ public class ForumEfcDao : IForumDao
         }
 
         IEnumerable<Post>? posts = forum!.Posts;
-        return posts;*/
-        throw new NotImplementedException();
+        return posts;
     }
 }

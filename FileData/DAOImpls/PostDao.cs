@@ -37,6 +37,11 @@ public class PostDao : IPostDao
         return Task.FromResult(post);
     }
 
+    public Task<Post> CreateAsync(Post post, int forumId)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<IEnumerable<Post>> GetAllPostsByForumIdAsync(int id)
     {
         /*Forum? forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == id))!;

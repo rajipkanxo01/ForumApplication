@@ -11,7 +11,7 @@ public class Forum
     public User? CreatedBy { get; set; }
     public string? ForumName { get; set; }
     public string? ForumDescription { get; set; }
-    public ICollection<Post>? Posts { get; set; }
+    public ICollection<Post>? Posts { get; set; } = new List<Post>();
 
     public Forum(User? createdBy, string? forumName, string? forumDescription)
     {

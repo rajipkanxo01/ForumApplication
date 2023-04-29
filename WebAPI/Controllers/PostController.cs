@@ -18,7 +18,7 @@ public class PostController : ControllerBase
     }
 
     [HttpPost, Route("create"), Authorize]
-    public async Task<ActionResult<Post>> CreateAsync(PostDto postDto)
+    public async Task<ActionResult<Post>> CreateAsync(CreatePostDto postDto)
     {
         try
         {

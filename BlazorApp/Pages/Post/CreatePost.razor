@@ -61,8 +61,8 @@
                 throw new Exception("Fields are empty!!!");
             }
 
-            Forum forum = await ForumService.GetForumById(ForumId);
-            PostDto postDto = new PostDto(postTitle, postDescription, postCreatedBy, forum);
+            // Forum forum = await ForumService.GetForumById(ForumId);
+            PostDto postDto = new PostDto(postTitle, postDescription, postCreatedBy);
 
             CreatePostDto dto = new CreatePostDto(postDto, ForumId);
 

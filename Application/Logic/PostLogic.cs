@@ -14,15 +14,17 @@ public class PostLogic : IPostLogic
         this.postDao = postDao;
     }
 
-    public async Task<Post> CreateAsync(PostDto createPostDto)
+    public async Task<Post> CreateAsync(CreatePostDto createPostDto)
     {
+        PostDto? postDto = createPostDto.PostDto;
+
         Post createdPost = new Post()
         {
-            Title = createPostDto.Title,
-            Body = createPostDto.Body,
-            CreatedBy = createPostDto.CreatedBy
+            Title = postDto.Title,
+            Body = postDto.Body,
+            CreatedBy = postDto.CreatedBy
         };
-        Post post = await postDao.CreateAsync(createdPost);
+        Post post = await postDao.CreateAsync(createdPost, createPostDto.ForumId);
         return post;
     }
 
