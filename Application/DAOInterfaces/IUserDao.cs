@@ -7,6 +7,7 @@ public interface IUserDao
 {
     Task<User?> CreateAsync(User? toCreateUser);
     Task<IEnumerable<User?>> GetAllUsersAsync();
+    Task<User?> GetByUsernameAsync(string? username);
 
 
 }

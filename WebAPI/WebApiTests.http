@@ -1,12 +1,41 @@
-﻿POST https://localhost:7091/user/login
+﻿POST https://localhost:7091/user/register
 Content-Type: application/json
 
-{ "Username" : "rajipkanxo01", "Password" : "20602059" }
+{
+  "Username": "rajipkanxo01",
+  "Password": "20602059"
+}
+
+
+###
+
+
+###
+GET http://localhost:7091/user/
+
+
+###
+POST https://localhost:7091/Forum/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiIzZDJjMmZlZi1iMThlLTQ2Y2UtODNlZC1kNmY0NmNiN2JlYjAiLCJpYXQiOiI0LzI5LzIwMjMgNDo1MDoxNyBQTSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJyYWppcGthbnhvMDEiLCJleHAiOjE2ODI3OTA2MTcsImlzcyI6IkpXVEF1dGhlbnRpY2F0aW9uU2VydmVyIiwiYXVkIjoiSldUU2VydmljZVNlcnZlckFwcCJ9.NBG8KfAD0YP7nE2MnM1JGP1-gmzSglzkgOGUxUAwB4S-WdrAjjNyi8WZvMvDQ33JzZESNqvKab0DsxeyyucfdA
+
+
+{
+  "Forums": [
+    {
+      "ForumId": 1,
+      "CreatedBy": "rajipkanxo01",
+      "ForumName": "Tech Talk",
+      "ForumDescription": " For tech enthusiasts and professionals, this is the place to discuss the latest tech trends, gadgets, and innovations. From programming to cybersecurity, gaming to AI, join the conversation about all things tech-related.",
+      "Posts": []
+    }
+  ]
+}
 
 ###
 
 GET https://localhost:7091/forum
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiI0ZjA5MzMzMi1jNjAyLTRlYTItYmEzMy0xNDA5N2Y3ZmI0MjkiLCJpYXQiOiI0LzYvMjAyMyA5OjQxOjQ0IFBNIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InJhamlwMTIiLCJleHAiOjE2ODA4MjA5MDQsImlzcyI6IkpXVEF1dGhlbnRpY2F0aW9uU2VydmVyIiwiYXVkIjoiSldUU2VydmljZVNlcnZlckFwcCJ9.KmY8cOsCzsDSnbP8s-LDS2h3dV7PwNUpLWxnKhXXppZ9SSuKBvqyjWQj63Imv5ud9FoKU0-U4piRghJqe2n91Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiI2OGYwMmVlMS03N2QxLTRiMmItYjJlZS1lYjhhNGUwMTE1YzkiLCJpYXQiOiI0LzI5LzIwMjMgNDo0ODowMSBQTSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJyYWppcGthbnhvMDEiLCJleHAiOjE2ODI3OTA0ODEsImlzcyI6IkpXVEF1dGhlbnRpY2F0aW9uU2VydmVyIiwiYXVkIjoiSldUU2VydmljZVNlcnZlckFwcCJ9.zTZoQWLdgqRvJuU2UAZDhk1mpySj4SaY9MOu6ssY6EwqsXWExpUJdq7alx55gqIQ7F1cBme-kMOBxmxl5yrd6g
 
 
 ###

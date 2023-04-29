@@ -15,7 +15,9 @@ public class ForumDao : IForumDao
 
     public Task<Forum?> CreateAsync(Forum toCreateForum)
     {
-        int forumId = 1;
+        throw new NotImplementedException();
+
+        /*int forumId = 1;
         if (context.Forums.Any())
         {
             forumId = context.Forums.Max(forum => forum.ForumId);
@@ -27,7 +29,7 @@ public class ForumDao : IForumDao
         context.Forums.Add(toCreateForum);
         context.SaveChanges();
 
-        return Task.FromResult(toCreateForum)!;
+        return Task.FromResult(toCreateForum)!;*/
     }
 
     public Task<IEnumerable<Forum?>> GetAllForumsAsync()
@@ -44,7 +46,8 @@ public class ForumDao : IForumDao
 
     public Task<IEnumerable<Post>> GetAllPostsOfForum(int id)
     {
-        Forum? forum = GetForumByIdAsync(id).Result;
-        return Task.FromResult(forum!.Posts!.AsEnumerable());
+        /*Forum? forum = GetForumByIdAsync(id).Result;
+        return Task.FromResult(forum!.Posts!.AsEnumerable());*/
+        throw new NotImplementedException();
     }
 }

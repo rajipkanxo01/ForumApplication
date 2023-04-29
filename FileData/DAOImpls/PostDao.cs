@@ -13,44 +13,46 @@ public class PostDao : IPostDao
         this.fileContext = fileContext;
     }
 
-    public Task<Post> CreateAsync(Post post, int forumId)
+    public Task<Post> CreateAsync(Post post)
     {
-        Forum? forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == forumId))!;
+        // Forum? forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == forumId))!;
 
         int postId = 1;
 
-        ICollection<Post> posts = forum.Posts!;
+        // ICollection<Post> posts = forum.Posts!;
 
 
-        if (posts.Any())
-        {
-            postId = posts.Max(p => p.PostId);
-            postId++;
-        }
+        // if (posts.Any())
+        // {
+        //     postId = posts.Max(p => p.PostId);
+        //     postId++;
+        // }
 
         post.PostId = postId;
         post.CreatedOn = DateTime.Now.ToString("dddd , MMM dd yyyy,hh:mm");
         // post.Comments = new List<Comment>();
 
-        posts.Add(post);
+        // posts.Add(post);
         fileContext.SaveChanges();
         return Task.FromResult(post);
     }
 
     public Task<IEnumerable<Post>> GetAllPostsByForumIdAsync(int id)
     {
-        Forum? forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == id))!;
-        IEnumerable<Post> forumPosts = forum.Posts!.AsEnumerable();
-        return Task.FromResult(forumPosts);
+        /*Forum? forum = fileContext.Forums.FirstOrDefault((forum => forum.ForumId == id))!;
+        // IEnumerable<Post> forumPosts = forum.Posts!.AsEnumerable();
+        return Task.FromResult(forumPosts);*/
+        throw new NotImplementedException();
     }
 
     public Task<Post?> GetPostByIdAsync(int forumId, int postId)
     {
-        Forum? forum = fileContext.Forums!.FirstOrDefault(forum => forum.ForumId == forumId)!;
+        /*Forum? forum = fileContext.Forums!.FirstOrDefault(forum => forum.ForumId == forumId)!;
 
         Post post = forum.Posts!.FirstOrDefault(p => p.PostId == postId)!;
 
-        return Task.FromResult(post)!;
+        return Task.FromResult(post)!;*/
+        throw new NotImplementedException();
     }
 
     // public Task<IEnumerable<Post>> GetAllPostsAsync()

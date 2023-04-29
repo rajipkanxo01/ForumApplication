@@ -16,38 +16,29 @@ public class UserLogic : IUserLogic
 
     public async Task<User?> CreateAsync(UserDto userDto)
     {
-        IEnumerable<User?> allUsers = await userDao.GetAllUsersAsync();
-        User? existingUser = allUsers.FirstOrDefault(user =>
-            user.Username.Equals(userDto.Username, StringComparison.OrdinalIgnoreCase));
-        if (existingUser != null)
+        User? user = await userDao.GetByUsernameAsync(userDto.Username);
+
+        if (user != null)
         {
             throw new Exception("Username should be unique. Username already taken");
         }
 
-
         ValidateUserData(userDto);
 
         User? toCreate = new User(userDto.Username, userDto.Password);
-        // {
-        //     Username = userDto.Username,
-        //     Password = userDto.Password
-        // };
-
         User? createdUser = await userDao.CreateAsync(toCreate);
         return createdUser;
     }
 
     public async Task<User> ValidateUser(UserDto userDto)
     {
-        IEnumerable<User?> allUsers = await userDao.GetAllUsersAsync();
-        User? existingUser = allUsers.FirstOrDefault(user =>
-            user.Username.Equals(userDto.Username, StringComparison.OrdinalIgnoreCase));
+        User? existingUser = await userDao.GetByUsernameAsync(userDto.Username);
         if (existingUser == null)
         {
             throw new Exception("User not found");
         }
 
-        if (!existingUser.Password.Equals(userDto.Password))
+        if (!existingUser.Password!.Equals(userDto.Password))
         {
             throw new Exception("Password mismatch");
         }

@@ -61,18 +61,11 @@
                 throw new Exception("Fields are empty!!!");
             }
 
-            PostDto postDto = new PostDto(postTitle, postDescription, postCreatedBy);
-    // {
-    //     Title = PostTitle,
-    //     CreatedBy = PostCreatedBy,
-    //     Body = PostDescription
-    // };
+            Forum forum = await ForumService.GetForumById(ForumId);
+            PostDto postDto = new PostDto(postTitle, postDescription, postCreatedBy, forum);
 
             CreatePostDto dto = new CreatePostDto(postDto, ForumId);
-    // {
-    //     ForumId = ForumId,
-    //     PostDto = postDto
-    // };
+
 
             await PostService.CreateAsync(dto);
             Manager.NavigateTo($"/NavigateToForum/{forumId}");

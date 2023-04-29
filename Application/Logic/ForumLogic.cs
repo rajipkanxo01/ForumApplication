@@ -9,20 +9,20 @@ namespace Application.Logic;
 public class ForumLogic : IForumLogic
 {
     private readonly IForumDao forumDao;
+    private readonly IUserDao userDao;
 
-    public ForumLogic(IForumDao forumDao)
+    public ForumLogic(IForumDao forumDao, IUserDao userDao)
     {
         this.forumDao = forumDao;
+        this.userDao = userDao;
     }
 
     public async Task<Forum?> CreateAsync(ForumDto forumDto)
     {
-        Forum? forum = new Forum(forumDto.CreatedBy, forumDto.ForumTitle, forumDto.ForumDescription);
-        // {
-        //     CreatedBy = forumDto.CreatedBy,
-        //     ForumName = forumDto.ForumTitle,
-        //     ForumDescription = forumDto.ForumDescription
-        // };
+        User? user = await userDao.GetByUsernameAsync(forumDto.CreatedBy);
+        Forum? forum = new Forum(user, forumDto.ForumTitle, forumDto.ForumDescription);
+
+
         Forum? createdForum = await forumDao.CreateAsync(forum);
         return createdForum;
     }

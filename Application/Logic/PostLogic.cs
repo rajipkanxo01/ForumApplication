@@ -14,30 +14,28 @@ public class PostLogic : IPostLogic
         this.postDao = postDao;
     }
 
-    public async Task<Post> CreateAsync(CreatePostDto createPostDto)
+    public async Task<Post> CreateAsync(PostDto createPostDto)
     {
-        PostDto postDto = createPostDto.PostDto!;
-        
-        Post createdPost = new Post ()
+        Post createdPost = new Post()
         {
-            Title = postDto.Title,
-            Body = postDto.Body,
-            CreatedBy = postDto.CreatedBy
+            Title = createPostDto.Title,
+            Body = createPostDto.Body,
+            CreatedBy = createPostDto.CreatedBy
         };
-        Post post = await postDao.CreateAsync(createdPost,createPostDto.ForumId);
+        Post post = await postDao.CreateAsync(createdPost);
         return post;
     }
 
     public async Task<Post?> GetPostByIdAsync(int forumId, int postId)
     {
-        Post? post = await postDao.GetPostByIdAsync(forumId,postId);
+        Post? post = await postDao.GetPostByIdAsync(forumId, postId);
         return post;
     }
 
-   public async Task<IEnumerable<Post>> GetAllPostsByForumIdAsync(int forumId)
-   {
-       IEnumerable<Post> posts = await postDao.GetAllPostsByForumIdAsync(forumId);
-       return posts;
+    public async Task<IEnumerable<Post>> GetAllPostsByForumIdAsync(int forumId)
+    {
+        IEnumerable<Post> posts = await postDao.GetAllPostsByForumIdAsync(forumId);
+        return posts;
     }
 
     /*public Task<Comment> CreateCommentAsync(int id, CommentDto commentDto)

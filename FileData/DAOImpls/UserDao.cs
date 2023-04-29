@@ -25,6 +25,8 @@ public class UserDao : IUserDao
         return Task.FromResult(users);
     }
 
-    
-    
+    public Task<User?> GetByUsernameAsync(string? username)
+    {
+        throw new NotImplementedException();
+    }
 }
